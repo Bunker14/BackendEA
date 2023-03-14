@@ -15,6 +15,9 @@ const SubjectSchema = new Schema<Item>(
             type: Number,
             required: true,
         },
+        totalprice:{
+            type: Number,
+        }
     },
     {
         timestamps: true,
