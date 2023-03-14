@@ -1,24 +1,9 @@
-We are going to use: 
+Proyecto EA Grupo 2
 
- - Visual Studio Code as an editor: https://code.visualstudio.com/Download 
- - MongoDB Community Server: https://www.mongodb.com/try/download/community 
- - Thunder Client as an extension in Visual Studio Code to run your REST API locally. 
+Backend con Users y Grupos hechos
+Tickets y Items preparados para hacer controller y rutas
 
 IMPORTANT COMMANDS BEFORE USING VISUAL STUDIO CODE
---------------------------------------------------
-
-- Check versions
-
-    node -v \
-    npm -v
-
-- Global installation 
-
-    npm i typescript -g \
-    npm i ts-node -g \
-    npm i nodemon -g
-
-- Prepare project 
 
     tsc --init \
     npm init -y \
