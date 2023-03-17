@@ -45,6 +45,4 @@ const delete_Ticket=async ({params}:Request,res:Response)=>{
     }
 };
 
-
-
 export{get_Ticket, get_Tickets, create_Ticket, delete_Ticket};
