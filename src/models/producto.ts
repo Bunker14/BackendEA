@@ -1,7 +1,7 @@
 import {  Schema, Types, model, Model } from "mongoose";
-import { Item } from "../interfaces/item.interface";
+import { Producto } from "../interfaces/producto.interface";
 
-const SubjectSchema = new Schema<Item>(
+const SubjectSchema = new Schema<Producto>(
     {
         name:{
             type: String,
@@ -17,6 +17,7 @@ const SubjectSchema = new Schema<Item>(
         },
         totalprice:{
             type: Number,
+            required: false,
         }
     },
     {
@@ -25,6 +26,6 @@ const SubjectSchema = new Schema<Item>(
     }
 );
 
-const ItemModel = model('items', SubjectSchema);
+const ProductoModel = model('items', SubjectSchema);
 
-export default ItemModel;
+export default ProductoModel;
