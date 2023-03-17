@@ -1,7 +1,7 @@
 import {  Schema, Types, model, Model } from "mongoose";
 import { Producto } from "../interfaces/producto.interface";
 
-const SubjectSchema = new Schema<Producto>(
+const ProductoSchema = new Schema<Producto>(
     {
         name:{
             type: String,
@@ -26,6 +26,6 @@ const SubjectSchema = new Schema<Producto>(
     }
 );
 
-const ProductoModel = model('items', SubjectSchema);
+const ProductoModel = model('productos', ProductoSchema);
 
 export default ProductoModel;

@@ -1,11 +1,21 @@
 import {  Schema, Types, model, Model } from "mongoose";
 import { Ticket } from "../interfaces/ticket.interface";
 
-const UserSchema = new Schema<Ticket>(
+const TicketSchema = new Schema<Ticket>(
     {
+        nombre:{
+            type: String,
+            required: false,
+        },
+
         items:{
             type: [Schema.Types.ObjectId],
-            ref:'tickets',
+            ref:'productos',
+        },
+
+        location:{
+            type: String,
+            required: false,
         },
     },
     {
@@ -17,6 +27,6 @@ const UserSchema = new Schema<Ticket>(
 //Once the Schema is created, it must be implemented
 //1st argument ('users') is the name of the collection
 //2nd argument (UserSchema) is what it feds it
-const TicketModel = model('tickets', UserSchema);
+const TicketModel = model('tickets', TicketSchema);
 
 export default TicketModel;
