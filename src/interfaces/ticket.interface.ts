@@ -2,6 +2,6 @@ import { ObjectExpression, ObjectId } from "mongoose";
 
 export interface Ticket {
     nombre: string;
-    items?: ObjectId[];
+    productos?: ObjectId[];
     location?: string; 
 }

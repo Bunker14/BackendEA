@@ -28,6 +28,20 @@ const deleteTicket = async(id: string) => {
     return responseItem;
 }
 
+const insertProductoToTicket = async(idTicket: string, idProducto: string) => {
+    const responseItem = await TicketModel.findOneAndUpdate({_id:idTicket},
+        {$addToSet: {productos: new Types.ObjectId(idProducto)}},
+        {new: true}).populate('productos');
+    console.log(responseItem);
+    return responseItem;
+}
+
+// const deleteProductoToTicket = async(idTicket: string, idProducto: string) => {
+//     const responseItem = await GrupoModel.findOneAndUpdate({_id:idTicket},
+//         {$addToSet: {producto: new Types.ObjectId(idProducto)}},
+//         {new: true}).populate('productos');
+// }
 
 
-export {insertTicket, getTickets, getTicket, deleteTicket};
+
+export {insertTicket, getTickets, getTicket, deleteTicket, insertProductoToTicket};

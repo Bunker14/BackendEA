@@ -2,7 +2,7 @@
 
 import { Request, Response, Router } from "express";
 import {get_Grupos, get_Grupo, update_Grupo, delete_Grupo, join_Grupo, create_Grupo} from "../controllers/grupo";
-import { create_Ticket, delete_Ticket, get_Tickets } from "../controllers/ticket";
+import { create_Ticket, delete_Ticket, get_Tickets, insert_ProductoToTicket } from "../controllers/ticket";
 
 const router = Router(); //es el manejador de las rutas, las interpreta, con esto podremos crear los GET, POST ....
 
@@ -13,6 +13,7 @@ router.get("/all", get_Tickets);
 router.get("/:idTicket", get_Tickets);
 router.post("/", create_Ticket);
 router.delete("/:idTicket",delete_Ticket);
+router.post("/insert", insert_ProductoToTicket)
 
 
 

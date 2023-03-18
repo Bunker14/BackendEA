@@ -10,7 +10,7 @@ const get_Grupo=async({params}:Request,res:Response)=>{
         const data=response ? response:"NOT_FOUND";
         res.send(data);
     } catch(e){
-        handleHttp(res,"ERROR_GET_USER");
+        handleHttp(res,"ERROR_GET_GRUPO");
     }
 };
 
@@ -19,7 +19,7 @@ const get_Grupos=async(req:Request,res:Response)=>{
         const response=await getGrupos();
         res.send(response);
     } catch(e){
-        handleHttp(res,"ERROR_GET_USERS");
+        handleHttp(res,"ERROR_GET_GRUPOS");
     }
 };
 
@@ -29,7 +29,7 @@ const update_Grupo=async ({params,body}:Request,res:Response)=>{
         const response=await updateGrupo(idGrupo,body);
         res.send(response);
     } catch(e){
-        handleHttp(res,"ERROR_UPDATE_USER");
+        handleHttp(res,"ERROR_UPDATE_GRUPO");
     }
 };
 
@@ -49,17 +49,17 @@ const delete_Grupo=async ({params}:Request,res:Response)=>{
         const response=await deleteGrupo(idGrupo);
         res.send(response);
     } catch(e){
-        handleHttp(res,"ERROR_DELETE_USER");
+        handleHttp(res,"ERROR_DELETE_GRUPO");
     }
 };
 
 const join_Grupo=async ({body}:Request,res:Response)=>{
     try{
-        const { idUser,PasswordGrupo, idGrupo  } = body;
+        const { idUser, PasswordGrupo, idGrupo  } = body;
         const responseGrupo = await joinGrupo(idUser, PasswordGrupo, idGrupo );
         res.send(responseGrupo);
     }catch(e){
-        handleHttp(res,"ERROR_POST_USER");
+        handleHttp(res,"ERROR_JOIN_GRUPO");
     }
 };
 

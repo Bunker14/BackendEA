@@ -2,7 +2,8 @@ import { Request,Response } from "express";
 import { insertUser,getUsers,getUser,updateUser,deleteUser} from "../services/user";
 import { handleHttp } from "../utils/error.handle";
 import { deleteGrupo, getGrupo, getGrupos, insertGrupo, joinGrupo, updateGrupo } from "../services/grupo";
-import { deleteTicket, getTicket, getTickets, insertTicket } from "../services/ticket";
+import { deleteTicket, getTicket, getTickets, insertProductoToTicket, insertTicket } from "../services/ticket";
+import { insertProducto } from "../services/producto";
 
 const get_Ticket=async({params}:Request,res:Response)=>{
     try{
@@ -45,4 +46,18 @@ const delete_Ticket=async ({params}:Request,res:Response)=>{
     }
 };
 
-export{get_Ticket, get_Tickets, create_Ticket, delete_Ticket};
+
+const insert_ProductoToTicket=async ({body}:Request,res:Response)=>{
+    try{
+        const { idProducto, idTicket  } = body;
+        console.log(idProducto, idTicket)
+        const response=await insertProductoToTicket(idTicket, idProducto);
+        res.send(response);
+        console.log("al controller llega")
+        console.log(response)
+    } catch(e){
+        handleHttp(res,"ERROR_INSERT_INTO_TICKET");
+    }
+};
+
+export{get_Ticket, get_Tickets, create_Ticket, delete_Ticket, insert_ProductoToTicket};

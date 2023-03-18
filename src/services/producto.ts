@@ -13,22 +13,22 @@ const insertProducto = async(item: Producto) => {
 };
 
 const getProdcutos = async() => {
-    const responseItem = await GrupoModel.find({});
+    const responseItem = await ProductoModel.find({});
     return responseItem;
 };
 
 const getProducto = async(id: string) => {
-    const responseItem = await GrupoModel.findOne({_id: id});
+    const responseItem = await ProductoModel.findOne({_id: id});
     return responseItem;
 };
 
 const updateProducto = async(id: string, data: Grupo) => {
-    const responseItem = await GrupoModel.findOneAndUpdate({_id: id}, data,{new: true});
+    const responseItem = await ProductoModel.findOneAndUpdate({_id: id}, data,{new: true});
     return responseItem;
 };
 
 const deleteProducto = async(id: string) => {
-    const responseItem = await GrupoModel.findOneAndRemove({_id: id});
+    const responseItem = await ProductoModel.findOneAndRemove({_id: id});
     return responseItem;
 }
 

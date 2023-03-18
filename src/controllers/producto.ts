@@ -5,8 +5,8 @@ import { insertProducto, getProdcutos, getProducto, updateProducto, deleteProduc
 
 const get_Producto=async({params}:Request,res:Response)=>{
     try{
-        const {idGrupo}=params;
-        const response=await getProducto(idGrupo);
+        const {idProducto}=params;
+        const response=await getProducto(idProducto);
         const data=response ? response:"NOT_FOUND";
         res.send(data);
     } catch(e){

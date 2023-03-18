@@ -8,7 +8,7 @@ const TicketSchema = new Schema<Ticket>(
             required: false,
         },
 
-        items:{
+        productos:{
             type: [Schema.Types.ObjectId],
             ref:'productos',
         },
