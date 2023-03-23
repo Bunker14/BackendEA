@@ -11,6 +11,10 @@ const SubjectSchema = new Schema<ProductoUsuario>(
             type: [Schema.Types.ObjectId],
             ref:'productos',
         },
+        ticket:{
+            type: [Schema.Types.ObjectId],
+            ref:'tickets',
+        },
     },
     {
         timestamps: true,
