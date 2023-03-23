@@ -1,5 +1,5 @@
 import {  Schema, Types, model, Model } from "mongoose";
-import { ProductoUsuario } from "../interfaces/ProductoUsuario";
+import { ProductoUsuario } from "../interfaces/ProductoUsuario.interface";
 
 const SubjectSchema = new Schema<ProductoUsuario>(
     {
@@ -22,6 +22,6 @@ const SubjectSchema = new Schema<ProductoUsuario>(
     }
 );
 
-const GrupoModel = model('grupos', SubjectSchema);
+const GrupoModel = model('ProductosUsuarios', SubjectSchema);
 
 export default GrupoModel;
