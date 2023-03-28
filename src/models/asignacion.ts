@@ -1,7 +1,7 @@
 import {  Schema, Types, model, Model } from "mongoose";
-import { ProductoUsuario } from "../interfaces/ProductoUsuario.interface";
+import { Asignacion } from "../interfaces/asignacion.interface";
 
-const SubjectSchema = new Schema<ProductoUsuario>(
+const SubjectSchema = new Schema<Asignacion>(
     {
         usuario:{
             type: [Schema.Types.ObjectId],
@@ -22,6 +22,6 @@ const SubjectSchema = new Schema<ProductoUsuario>(
     }
 );
 
-const GrupoModel = model('ProductosUsuarios', SubjectSchema);
+const AsignacionModel = model('Asignaciones', SubjectSchema);
 
-export default GrupoModel;
+export default AsignacionModel;

@@ -1,6 +1,6 @@
 import { ObjectId } from "mongoose";
 
-export interface ProductoUsuario {
+export interface Asignacion {
     usuario: ObjectId[];
     producto: ObjectId[];
     ticket: ObjectId[];
