@@ -10,7 +10,7 @@ const router = Router(); //es el manejador de las rutas, las interpreta, con est
  * http://localhost:3002/items [GET]
  */
 router.get("/all", get_Productos);
-router.get("/:idproducto", get_Producto);
+router.get("/:idProducto", get_Producto);
 router.put("/:idProducto",update_Prodcuto);
 router.post("/", create_Producto);
 router.delete("/:idProducto",delete_Producto);

@@ -1,7 +1,7 @@
 import { Request,Response } from "express";
 import { insertUser,getUsers,getUser,updateUser,deleteUser} from "../services/user";
 import { handleHttp } from "../utils/error.handle";
-import { deleteGrupo, getGrupo, getGrupos, insertGrupo, joinGrupo, updateGrupo } from "../services/grupo";
+import { deleteGrupo, getGrupo, getGrupos, insertGrupo, insertTicketGrupo, joinGrupo, updateGrupo } from "../services/grupo";
 
 const get_Grupo=async({params}:Request,res:Response)=>{
     try{
@@ -63,4 +63,17 @@ const join_Grupo=async ({body}:Request,res:Response)=>{
     }
 };
 
-export{get_Grupo, get_Grupos, join_Grupo, update_Grupo, delete_Grupo, create_Grupo};
+const insert_TicketGrupo=async ({body}:Request,res:Response)=>{
+    try{
+        const { idGrupo, idTicket  } = body;
+        const responseGrupo = await insertTicketGrupo(idTicket, idGrupo );
+        res.send(responseGrupo);
+    }catch(e){
+        handleHttp(res,"ERROR_INSERT_TICKET");
+    }
+};
+
+
+
+
+export{get_Grupo, get_Grupos, join_Grupo, update_Grupo, delete_Grupo, create_Grupo, insert_TicketGrupo};

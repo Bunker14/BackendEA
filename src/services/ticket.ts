@@ -22,6 +22,11 @@ const getTicket = async(id: string) => {
     return responseItem;
 };
 
+const updateTicket = async(id: string, data: Ticket) => {
+    const responseItem = await TicketModel.findOneAndUpdate({_id: id}, data,{new: true});
+    return responseItem;
+};
+
 
 const deleteTicket = async(id: string) => {
     const responseItem = await TicketModel.findOneAndRemove({_id: id});
@@ -44,4 +49,4 @@ const insertProductoToTicket = async(idTicket: string, idProducto: string) => {
 
 
 
-export {insertTicket, getTickets, getTicket, deleteTicket, insertProductoToTicket};
+export {insertTicket, getTickets, getTicket, deleteTicket, insertProductoToTicket, updateTicket};

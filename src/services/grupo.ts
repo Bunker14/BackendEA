@@ -45,7 +45,24 @@ const joinGrupo = async(UserName: string, password: string, GrupoName: string ) 
         console.log('Error: contraseña incorrecta')
 
     } 
+
 }
+const insertTicketGrupo = async(idGrupo:string,idTicket:string) => {
+    console.log(idGrupo);
+    console.log(idTicket);
+    const quebuscas = await GrupoModel.findOne({_id:idGrupo})
+    const responseItem = await GrupoModel.findOneAndUpdate(
+        {_id:idGrupo},
+        {$addToSet: {tickets: new Types.ObjectId(idTicket)}},
+        {new: true}
+    ).populate('tickets');
+    console.log(quebuscas);
+    console.log(responseItem);
+    return responseItem;
+    
+}
+    
 
 
-export {insertGrupo, getGrupos, getGrupo, updateGrupo, deleteGrupo, joinGrupo};
+
+export {insertGrupo, getGrupos, getGrupo, updateGrupo, deleteGrupo, joinGrupo, insertTicketGrupo};
