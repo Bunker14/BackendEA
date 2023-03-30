@@ -66,7 +66,7 @@ const join_Grupo=async ({body}:Request,res:Response)=>{
 const insert_TicketGrupo=async ({body}:Request,res:Response)=>{
     try{
         const { idGrupo, idTicket  } = body;
-        const responseGrupo = await insertTicketGrupo(idTicket, idGrupo );
+        const responseGrupo = await insertTicketGrupo(idGrupo, idTicket );
         res.send(responseGrupo);
     }catch(e){
         handleHttp(res,"ERROR_INSERT_TICKET");
