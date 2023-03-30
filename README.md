@@ -1,7 +1,9 @@
 Proyecto EA Grupo 2
 
-Backend con Users y Grupos hechos
-Tickets y Items preparados para hacer controller y rutas
+Backend con Users, Grupos, Tickets, Productos y RelacionProductoUsuario hechos!
+
+API completamente funcional a falta de retoques
+
 
 IMPORTANT COMMANDS BEFORE USING VISUAL STUDIO CODE
 

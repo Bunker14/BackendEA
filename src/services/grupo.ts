@@ -55,7 +55,7 @@ const insertTicketGrupo = async(idGrupo:string,idTicket:string) => {
         {_id:idGrupo},
         {$addToSet: {tickets: new Types.ObjectId(idTicket)}},
         {new: true}
-    ).populate('tickets');
+    )
     console.log(quebuscas);
     console.log(responseItem);
     return responseItem;
