@@ -1,5 +1,5 @@
 import { Request,Response } from "express";
-import { insertUser,getUsers,getUser,updateUser,deleteUser, getUsersPaginado} from "../services/user";
+import { insertUser,getUsers,getUser,updateUser,deleteUser, getUsersPaginado, disableUser} from "../services/user";
 import { handleHttp } from "../utils/error.handle";
 
 const getPerson=async({params}:Request,res:Response)=>{
@@ -62,4 +62,14 @@ const deletePerson=async ({params}:Request,res:Response)=>{
     }
 };
 
-export{getPerson,getPeople,postPerson,updatePerson,deletePerson,getPeoplePaginado};
+const disablePerson=async ({params}:Request,res:Response)=>{
+    try{
+        const {idUser}=params;
+        const response=await disableUser(idUser);
+        res.send(response);
+    } catch(e){
+        handleHttp(res,"ERROR_DISABLE_USER");
+    }
+};
+
+export{getPerson,getPeople,postPerson,updatePerson,deletePerson,getPeoplePaginado, disablePerson};

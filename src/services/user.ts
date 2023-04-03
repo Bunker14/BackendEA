@@ -38,5 +38,10 @@ const deleteUser = async(id: string) => {
     return responseItem;
 }
 
+const disableUser = async(id: string) => {
+    const responseItem = await UserModel.findOneAndUpdate({_id: id},{ $set: { activo: false } });
+    return responseItem;
+}
 
-export {insertUser, getUser, getUsers, updateUser, deleteUser, getUsersPaginado};
+
+export {insertUser, getUser, getUsers, updateUser, deleteUser, getUsersPaginado, disableUser};
