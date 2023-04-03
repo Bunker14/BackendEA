@@ -17,6 +17,15 @@ const getTickets = async() => {
     return responseItem;
 };
 
+const getTicketsPaginado = async(pagina: number) => {
+    const page = pagina; // Número de página actual
+    const limit = 10; // Número de documentos a devolver por página
+    const skip = (page - 1) * limit; // Número de documentos para saltar
+    const responseItem = await TicketModel.find({}).skip(skip).limit(limit)
+    return responseItem;
+};
+
+
 const getTicket = async(id: string) => {
     const responseItem = await TicketModel.findOne({_id: id});
     return responseItem;
@@ -49,4 +58,4 @@ const insertProductoToTicket = async(idTicket: string, idProducto: string) => {
 
 
 
-export {insertTicket, getTickets, getTicket, deleteTicket, insertProductoToTicket, updateTicket};
+export {insertTicket, getTickets, getTicket, deleteTicket, insertProductoToTicket, updateTicket, getTicketsPaginado};

@@ -12,6 +12,17 @@ const getUsers = async() => {
     return responseItem;
 };
 
+
+const getUsersPaginado = async(pagina: number) => {
+    const page = pagina; // Número de página actual
+    const limit = 10; // Número de documentos a devolver por página
+    const skip = (page - 1) * limit; // Número de documentos para saltar
+    const responseItem = await UserModel.find({}).skip(skip).limit(limit)
+    return responseItem;
+};
+
+
+
 const getUser = async(id: string) => {
     const responseItem = await UserModel.findOne({_id: id});
     return responseItem;
@@ -28,4 +39,4 @@ const deleteUser = async(id: string) => {
 }
 
 
-export {insertUser, getUser, getUsers, updateUser, deleteUser};
+export {insertUser, getUser, getUsers, updateUser, deleteUser, getUsersPaginado};

@@ -1,5 +1,5 @@
 import { Request,Response } from "express";
-import { insertUser,getUsers,getUser,updateUser,deleteUser} from "../services/user";
+import { insertUser,getUsers,getUser,updateUser,deleteUser, getUsersPaginado} from "../services/user";
 import { handleHttp } from "../utils/error.handle";
 
 const getPerson=async({params}:Request,res:Response)=>{
@@ -16,6 +16,17 @@ const getPerson=async({params}:Request,res:Response)=>{
 const getPeople=async(req:Request,res:Response)=>{
     try{
         const response=await getUsers();
+        res.send(response);
+    } catch(e){
+        handleHttp(res,"ERROR_GET_USERS");
+    }
+};
+
+const getPeoplePaginado=async({params}:Request,res:Response)=>{
+    try{
+        const {pagina1}=params;
+        let pagina = +pagina1
+        const response=await getUsersPaginado(pagina);
         res.send(response);
     } catch(e){
         handleHttp(res,"ERROR_GET_USERS");
@@ -51,4 +62,4 @@ const deletePerson=async ({params}:Request,res:Response)=>{
     }
 };
 
-export{getPerson,getPeople,postPerson,updatePerson,deletePerson};
+export{getPerson,getPeople,postPerson,updatePerson,deletePerson,getPeoplePaginado};
