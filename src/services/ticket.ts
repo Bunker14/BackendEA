@@ -50,6 +50,11 @@ const insertProductoToTicket = async(idTicket: string, idProducto: string) => {
     return responseItem;
 }
 
+const getProductosTicket = async(id: string) => {
+    const responseItem = await TicketModel.findOne({_id: id}).populate('productos').then(ticket => ticket?.productos);
+    return responseItem;
+};
+
 // const deleteProductoToTicket = async(idTicket: string, idProducto: string) => {
 //     const responseItem = await GrupoModel.findOneAndUpdate({_id:idTicket},
 //         {$addToSet: {producto: new Types.ObjectId(idProducto)}},
@@ -58,4 +63,4 @@ const insertProductoToTicket = async(idTicket: string, idProducto: string) => {
 
 
 
-export {insertTicket, getTickets, getTicket, deleteTicket, insertProductoToTicket, updateTicket, getTicketsPaginado};
+export {getProductosTicket,insertTicket, getTickets, getTicket, deleteTicket, insertProductoToTicket, updateTicket, getTicketsPaginado};

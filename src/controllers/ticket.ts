@@ -2,7 +2,7 @@ import { Request,Response } from "express";
 import { insertUser,getUsers,getUser,updateUser,deleteUser} from "../services/user";
 import { handleHttp } from "../utils/error.handle";
 import { deleteGrupo, getGrupo, getGrupos, insertGrupo, joinGrupo, updateGrupo } from "../services/grupo";
-import { deleteTicket, getTicket, getTickets, getTicketsPaginado, insertProductoToTicket, insertTicket, updateTicket } from "../services/ticket";
+import { getProductosTicket,deleteTicket, getTicket, getTickets, getTicketsPaginado, insertProductoToTicket, insertTicket, updateTicket } from "../services/ticket";
 import { insertProducto } from "../services/producto";
 
 const get_Ticket=async({params}:Request,res:Response)=>{
@@ -51,8 +51,8 @@ const create_Ticket=async ({body}:Request,res:Response)=>{
 
 const delete_Ticket=async ({params}:Request,res:Response)=>{
     try{
-        const {idGrupo}=params;
-        const response=await deleteTicket(idGrupo);
+        const {idTicket}=params;
+        const response=await deleteTicket(idTicket);
         res.send(response);
     } catch(e){
         handleHttp(res,"ERROR_DELETE_TICKET");
@@ -82,4 +82,16 @@ const insert_ProductoToTicket=async ({body}:Request,res:Response)=>{
     }
 };
 
-export{get_Ticket, get_Tickets, create_Ticket, delete_Ticket, insert_ProductoToTicket, update_Ticket, get_TicketsPaginado};
+const get_productos_ticket=async({params}:Request,res:Response)=>{
+    try{
+        const {idTicket}=params;
+        const response=await getProductosTicket(idTicket);
+        const data=response ? response:"NOT_FOUND";
+        res.send(data);
+    } catch(e){
+        handleHttp(res,"ERROR_GET_PRODUCTOS_TICKET");
+    }
+};
+
+
+export{get_productos_ticket,get_Ticket, get_Tickets, create_Ticket, delete_Ticket, insert_ProductoToTicket, update_Ticket, get_TicketsPaginado};
