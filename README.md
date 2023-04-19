@@ -11,3 +11,7 @@ IMPORTANT COMMANDS BEFORE USING VISUAL STUDIO CODE
     npm init -y \
     npm i express cors dotenv multer mongoose \
     npm i @types/express @types/cors @types/dotenv @types/multer @types/mongoose -D
+
+.env
+    PORT=3000
+    DB_URI="mongodb://127.0.0.1:27017/EA-DDBB"

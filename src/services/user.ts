@@ -1,6 +1,9 @@
 //In charge to connect with the dB
 import { User } from "../interfaces/user.interface";
 import UserModel from "../models/user";
+import GrupoModel from "../models/grupo";
+import TicketModel from "../models/ticket";
+import { Types } from "mongoose";
 
 const insertUser = async(item: User) => {
     const responseInsert = await UserModel.create(item);
@@ -43,5 +46,16 @@ const disableUser = async(id: string) => {
     return responseItem;
 }
 
+const getGruposOfUser = async(id: string) => {
+    const responseItem = await GrupoModel.find({"users": new Types.ObjectId(id)});
+    return responseItem;
+};
+const getTicketsOfUser = async(id: string) => {
+    const responseItem = await GrupoModel.find({"users": new Types.ObjectId(id)}).populate('tickets');
+    const tickets=responseItem.map(grupo=>grupo.tickets);
+    return tickets;
+};
 
-export {insertUser, getUser, getUsers, updateUser, deleteUser, getUsersPaginado, disableUser};
+
+
+export {insertUser, getUser, getUsers, updateUser, deleteUser, getUsersPaginado, disableUser,getGruposOfUser,getTicketsOfUser};

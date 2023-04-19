@@ -1,5 +1,5 @@
 import { Request,Response } from "express";
-import { insertUser,getUsers,getUser,updateUser,deleteUser, getUsersPaginado, disableUser} from "../services/user";
+import { getTicketsOfUser,insertUser,getUsers,getUser,updateUser,deleteUser, getUsersPaginado, disableUser,getGruposOfUser} from "../services/user";
 import { handleHttp } from "../utils/error.handle";
 
 const getPerson=async({params}:Request,res:Response)=>{
@@ -72,4 +72,26 @@ const disablePerson=async ({params}:Request,res:Response)=>{
     }
 };
 
-export{getPerson,getPeople,postPerson,updatePerson,deletePerson,getPeoplePaginado, disablePerson};
+const gruposOfUser=async({params}:Request,res:Response)=>{
+    try{
+        const {idUser}=params;
+        const response=await getGruposOfUser(idUser);
+        const data=response ? response:"NOT_FOUND";
+        res.send(data);
+    } catch(e){
+        handleHttp(res,"ERROR_GET_GRUPOS_OF_USER");
+    }
+};
+
+const ticketsOfUser=async({params}:Request,res:Response)=>{
+    try{
+        const {idUser}=params;
+        const response=await getTicketsOfUser(idUser);
+        const data=response ? response:"NOT_FOUND";
+        res.send(data);
+    } catch(e){
+        handleHttp(res,"ERROR_GET_TICKETS_OF_USER");
+    }
+};
+
+export{getPerson,getPeople,postPerson,updatePerson,deletePerson,getPeoplePaginado, disablePerson,gruposOfUser,ticketsOfUser};
