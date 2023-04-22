@@ -5,6 +5,7 @@ import GrupoModel from "../models/grupo";
 import TicketModel from "../models/ticket";
 import { Types } from "mongoose";
 
+
 const insertUser = async(item: User) => {
     const responseInsert = await UserModel.create(item);
     return responseInsert;
