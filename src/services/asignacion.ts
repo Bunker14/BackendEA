@@ -14,7 +14,7 @@ const createAsignacion = async(item: Asignacion) => {
 const updateAsignacion = async(idProducto: string, idAsignacion: string) => {
     const responseInsert = await AsignacionModel.findOneAndUpdate({_id: idAsignacion}, 
     {$addToSet: {producto: new Types.ObjectId(idProducto)}},
-    {new: true}).populate('prodcutos');
+    {new: true}).populate('productos');
     return responseInsert;
 };
 
