@@ -17,15 +17,13 @@ const create_Asignacion=async({body}:Request,res:Response)=>{
         if (!ticket) {
         return res.status(404).send("Ticket no encontrado");
         }
-        const response=await createAsignacion(body);
-        res.send(response);
     } catch(e){
         handleHttp(res,"ERROR_INSERT_ASIGNACION");
     }
 };
 
 
-const update_Asignacion=async ({params}:Request,res:Response)=>{
+const delete_Asignacion=async ({params}:Request,res:Response)=>{
     try{
         const {idAsignacion}=params;
         const response=await deleteAsignacion(idAsignacion);
@@ -37,7 +35,7 @@ const update_Asignacion=async ({params}:Request,res:Response)=>{
 
 
 
-const delete_Asignacion=async ({params,body}:Request,res:Response)=>{
+const update_Asignacion=async ({params,body}:Request,res:Response)=>{
     try{
         const {idAsignacion}=params;
         const response=await updateAsignacion(idAsignacion, body);
