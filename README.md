@@ -9,10 +9,11 @@ IMPORTANT COMMANDS BEFORE USING VISUAL STUDIO CODE
 
     tsc --init \
     npm init -y \
-    npm i express cors dotenv multer mongoose \
-    npm i @types/express @types/cors @types/dotenv @types/multer @types/mongoose -D
+    npm i express cors dotenv multer mongoose bcryptjs jsonwebtoken \
+    npm i @types/express @types/cors @types/dotenv @types/multer @types/mongoose @types/bcryptjs @types/jsonwebtoken -D
 
 Fichero .env
 
     PORT=3000
     DB_URI="mongodb://127.0.0.1:27017/EA-DDBB"
+    JWT_SECRET=secrettoken

@@ -1,6 +1,7 @@
 import { Request,Response } from "express";
 import { getTicketsOfUser,insertUser,getUsers,getUser,updateUser,deleteUser, getUsersPaginado, disableUser,getGruposOfUser} from "../services/user";
 import { handleHttp } from "../utils/error.handle";
+import {registerNewUser,loginUser}from "../services/auth";
 
 const getPerson=async({params}:Request,res:Response)=>{
     try{
@@ -92,6 +93,31 @@ const ticketsOfUser=async({params}:Request,res:Response)=>{
     } catch(e){
         handleHttp(res,"ERROR_GET_TICKETS_OF_USER");
     }
+
+    
+};
+const registerCtrl=async ({body}:Request,res:Response)=>{
+    try{const response=await registerNewUser(body);
+    const data=response ? response:"NOT_FOUND";
+        res.send(data);
+    } catch(e){
+        handleHttp(res,"ERROR_REGISTER_USER");
+    }
+};
+const loginCtrl=async ({body}:Request,res:Response)=>{
+    try{
+        const {name,password}=body;
+        const responseUser=await loginUser(name,password);
+        if(responseUser==="PASSWORD_INCORRECT"){
+            res.status(403);
+            res.send(responseUser);
+        }else{
+            res.send(responseUser);
+        }
+
+    }catch(e){
+    handleHttp(res,"ERROR_LOGIN_USER");
+    }
 };
 
-export{getPerson,getPeople,postPerson,updatePerson,deletePerson,getPeoplePaginado, disablePerson,gruposOfUser,ticketsOfUser};
+export{loginCtrl,registerCtrl,getPerson,getPeople,postPerson,updatePerson,deletePerson,getPeoplePaginado, disablePerson,gruposOfUser,ticketsOfUser};
