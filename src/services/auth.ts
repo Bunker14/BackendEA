@@ -26,8 +26,9 @@ const loginUser=async(name:string,password:string)=>{
     //Comparar la password de BBDD i del login
     const isCorrect=await verified(password,passwordHash);
     if(!isCorrect) return "PASSWORD_INCORRECT";
-
-    const token=generateToken(checkIs.name);
+    
+    console.log(checkIs.role);
+    const token=generateToken(checkIs.role);
     const data={
         token,
         user:checkIs,
