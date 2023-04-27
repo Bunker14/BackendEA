@@ -11,7 +11,7 @@ const router = Router(); //es el manejador de las rutas, las interpreta, con est
  * http://localhost:3002/items [GET]
  */
 router.get("/all",getPeople);
-router.get("/allPaginado/:pagina1", getPeoplePaginado);
+router.get("/allPaginado/:limite1/:pagina1", getPeoplePaginado);
 router.get("/:idUser", getPerson);
 router.post("/",postPerson);
 router.put("/:idUser",updatePerson);

@@ -17,9 +17,9 @@ const getUsers = async() => {
 };
 
 
-const getUsersPaginado = async(pagina: number) => {
+const getUsersPaginado = async(limite: number,pagina: number) => {
     const page = pagina; // Número de página actual
-    const limit = 10; // Número de documentos a devolver por página
+    const limit = limite; // Número de documentos a devolver por página
     const skip = (page - 1) * limit; // Número de documentos para saltar
     const responseItem = await UserModel.find({}).skip(skip).limit(limit)
     return responseItem;

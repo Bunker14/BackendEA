@@ -25,9 +25,10 @@ const getPeople=async(req:Request,res:Response)=>{
 
 const getPeoplePaginado=async({params}:Request,res:Response)=>{
     try{
-        const {pagina1}=params;
+        const {limite1, pagina1}=params;
         let pagina = +pagina1
-        const response=await getUsersPaginado(pagina);
+        let limite = +limite1
+        const response=await getUsersPaginado(limite, pagina);
         res.send(response);
     } catch(e){
         handleHttp(res,"ERROR_GET_USERS");
