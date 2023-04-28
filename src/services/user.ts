@@ -7,12 +7,13 @@ import { Types } from "mongoose";
 
 
 const insertUser = async(item: User) => {
-    const responseInsert = await UserModel.create(item);
+    const itemWithIsEnabled = { ...item, isEnabled: true };
+    const responseInsert = await UserModel.create(itemWithIsEnabled);
     return responseInsert;
 };
 
 const getUsers = async() => {
-    const responseItem = await UserModel.find({});
+    const responseItem = await UserModel.find({isEnabled: true});
     return responseItem;
 };
 
@@ -43,7 +44,7 @@ const deleteUser = async(id: string) => {
 }
 
 const disableUser = async(id: string) => {
-    const responseItem = await UserModel.findOneAndUpdate({_id: id},{ $set: { activo: false } });
+    const responseItem = await UserModel.findOneAndUpdate({_id: id},{ $set: { isEnabled: false } });
     return responseItem;
 }
 

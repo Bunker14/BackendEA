@@ -24,6 +24,10 @@ const UserSchema = new Schema<User>(
             enum: ["Admin", "User"],
             required:true,
         },
+        isEnabled:{
+            type: Boolean,
+
+        } 
     },
     {
         timestamps: true,
