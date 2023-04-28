@@ -61,8 +61,17 @@ const insertTicketGrupo = async(idGrupo:string,idTicket:string) => {
     return responseItem;
     
 }
+
+const exitGrupo = async(UserName: string, GrupoName: string ) => {
+    const responseItem = await GrupoModel.findOneAndUpdate({_id:GrupoName},
+        {$pull: {users: new Types.ObjectId(UserName)}},
+        {new: true}
+    );
+    console.log(responseItem?.users);
+    return responseItem;
+} 
     
 
 
 
-export {insertGrupo, getGrupos, getGrupo, updateGrupo, deleteGrupo, joinGrupo, insertTicketGrupo};
+export {insertGrupo, getGrupos, getGrupo, updateGrupo, deleteGrupo, joinGrupo, insertTicketGrupo, exitGrupo};
