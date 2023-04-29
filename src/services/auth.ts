@@ -17,8 +17,8 @@ const registerNewUser=async(user:User)=>{
 ;
 
 };
-const loginUser=async(name:string,password:string)=>{
-    const checkIs =await UserModel.findOne({name})
+const loginUser=async(email:string,password:string)=>{
+    const checkIs =await UserModel.findOne({email})
     //Si el usuario NO existe
     if (!checkIs)return "NOT_FOUND_USER";
     //Obtener el password encriptado de la BBDD
