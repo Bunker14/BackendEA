@@ -4,4 +4,5 @@ export interface Ticket {
     nombre: string;
     productos?: ObjectId[];
     location?: string; 
+    anfitrion?: ObjectId[];
 }
