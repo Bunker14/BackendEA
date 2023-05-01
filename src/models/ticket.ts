@@ -17,6 +17,12 @@ const TicketSchema = new Schema<Ticket>(
             type: String,
             required: false,
         },
+
+        anfitrion:{
+            type: [Schema.Types.ObjectId],
+            ref: 'users',
+            required: false,
+        }
     },
     {
         timestamps: true,
