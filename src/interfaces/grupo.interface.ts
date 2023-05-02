@@ -2,7 +2,8 @@ import { ObjectId } from "mongoose";
 
 export interface Grupo {
     name: string;
-    password: string;
+    codigo?: string;
     users?: ObjectId[];
     tickets?: ObjectId[];
+    descripcion?: string;
 }

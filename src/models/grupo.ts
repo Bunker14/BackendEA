@@ -7,9 +7,9 @@ const SubjectSchema = new Schema<Grupo>(
             type: String,
             required:true,
         },
-        password:{
+        codigo:{
             type: String,
-            required: true,
+            required: false,
         },
         users:{
             type: [Schema.Types.ObjectId],
@@ -18,6 +18,10 @@ const SubjectSchema = new Schema<Grupo>(
         tickets:{
             type: [Schema.Types.ObjectId],
             ref:'tickets',
+        },
+        descripcion:{
+            type: String,
+            required: false,
         },
     },
     {

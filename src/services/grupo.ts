@@ -6,6 +6,16 @@ import GrupoModel from "../models/grupo";
 import UserModel from "../models/user";
 
 const insertGrupo = async(item: Grupo) => {
+    const caracteres = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    let codigo: string;
+    do{
+        codigo = '';
+        for (let i = 0; i < 6; i++) {
+            codigo += caracteres.charAt(Math.floor(Math.random() * caracteres.length));
+        }
+        item.codigo = codigo;
+    } while (await GrupoModel.exists({ codigo: codigo }));
+
     const responseInsert = await GrupoModel.create(item);
     return responseInsert;
 };
@@ -30,10 +40,10 @@ const deleteGrupo = async(id: string) => {
     return responseItem;
 }
 
-const joinGrupo = async(UserName: string, password: string, GrupoName: string ) => {
+const joinGrupo = async(UserName: string, codigo: string, GrupoName: string ) => {
     const GrupoSeleccionado = await GrupoModel.findOne({_id:GrupoName});
-    const PasswordGrupo = GrupoSeleccionado?.password;
-    if ( PasswordGrupo === password) {
+    const PasswordGrupo = GrupoSeleccionado?.codigo;
+    if ( PasswordGrupo === codigo) {
     const responseItem = await GrupoModel.findOneAndUpdate({_id:GrupoName},
         {$addToSet: {users: new Types.ObjectId(UserName)}},
         {new: true}).populate('users');
@@ -42,7 +52,7 @@ const joinGrupo = async(UserName: string, password: string, GrupoName: string ) 
         return responseItem;
     } 
     else{
-        console.log('Error: contraseña incorrecta')
+        console.log('Error: codigo incorrecta')
 
     } 
 
@@ -71,7 +81,5 @@ const exitGrupo = async(UserName: string, GrupoName: string ) => {
     return responseItem;
 } 
     
-
-
 
 export {insertGrupo, getGrupos, getGrupo, updateGrupo, deleteGrupo, joinGrupo, insertTicketGrupo, exitGrupo};
