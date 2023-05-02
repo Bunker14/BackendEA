@@ -40,11 +40,11 @@ const deleteGrupo = async(id: string) => {
     return responseItem;
 }
 
-const joinGrupo = async(UserName: string, codigo: string, GrupoName: string ) => {
-    const GrupoSeleccionado = await GrupoModel.findOne({_id:GrupoName});
+const joinGrupo = async(UserName: string, codigo: string ) => {
+    const GrupoSeleccionado = await GrupoModel.findOne({codigo:codigo});
     const PasswordGrupo = GrupoSeleccionado?.codigo;
     if ( PasswordGrupo === codigo) {
-    const responseItem = await GrupoModel.findOneAndUpdate({_id:GrupoName},
+    const responseItem = await GrupoModel.findOneAndUpdate({codigo:codigo},
         {$addToSet: {users: new Types.ObjectId(UserName)}},
         {new: true}).populate('users');
 
@@ -53,7 +53,6 @@ const joinGrupo = async(UserName: string, codigo: string, GrupoName: string ) =>
     } 
     else{
         console.log('Error: codigo incorrecta')
-
     } 
 
 }
