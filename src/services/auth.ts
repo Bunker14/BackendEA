@@ -1,4 +1,5 @@
 import { User } from "../interfaces/user.interface";
+import { Auth } from "../interfaces/auth.interface";
 import UserModel from "../models/user";
 import {insertUser} from "../services/user"
 import { encrypt, verified } from "../utils/bcrypt.handle";
@@ -17,7 +18,7 @@ const registerNewUser=async(user:User)=>{
 ;
 
 };
-const loginUser=async(email:string,password:string)=>{
+const loginUser=async({ email, password }: Auth)=>{
     const checkIs =await UserModel.findOne({email})
     //Si el usuario NO existe
     if (!checkIs)return "NOT_FOUND_USER";
@@ -35,4 +36,19 @@ const loginUser=async(email:string,password:string)=>{
     }
     return data;
 };
-export{registerNewUser,loginUser};
+
+const tokenUser = async ({ email, password }: Auth) => {
+    const checkIs = await UserModel.findOne({ email });
+    if (!checkIs) return "NOT_FOUND_USER";
+  
+    const passwordHash = checkIs.password; 
+    const isCorrect = await verified(password, passwordHash);
+  
+    if (!isCorrect) return "PASSWORD_INCORRECT";
+  
+    const token = generateToken(checkIs.email);
+    const data = {token};
+    return data;
+  };
+
+export{registerNewUser,loginUser, tokenUser};
