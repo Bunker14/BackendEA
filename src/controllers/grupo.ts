@@ -55,7 +55,7 @@ const delete_Grupo=async ({params}:Request,res:Response)=>{
 
 const join_Grupo=async ({body}:Request,res:Response)=>{
     try{
-        const { idUser, codigo, } = body;
+        const { idUser, codigo} = body;
         const responseGrupo = await joinGrupo(idUser, codigo);
         res.send(responseGrupo);
     }catch(e){

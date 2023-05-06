@@ -18,7 +18,7 @@ const registerNewUser=async(user:User)=>{
 ;
 
 };
-const loginUser=async({ email, password }: Auth)=>{
+const loginUser=async( email:string, password: string)=>{
     const checkIs =await UserModel.findOne({email})
     //Si el usuario NO existe
     if (!checkIs)return "NOT_FOUND_USER";
@@ -37,7 +37,7 @@ const loginUser=async({ email, password }: Auth)=>{
     return data;
 };
 
-const tokenUser = async ({ email, password }: Auth) => {
+const tokenUser = async ( email: string , password: string) => {
     const checkIs = await UserModel.findOne({ email });
     if (!checkIs) return "NOT_FOUND_USER";
   
