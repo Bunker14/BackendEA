@@ -10,13 +10,13 @@ const router = Router(); //es el manejador de las rutas, las interpreta, con est
 /**
  * http://localhost:3002/items [GET]
  */
-router.get("/all",getPeople);
+router.get("/all", logMiddleware, getPeople);
 router.get("/allPaginado/:limite1/:pagina1", getPeoplePaginado);
-router.get("/:idUser", getPerson);
+router.get("/:idUser", logMiddleware, getPerson);
 router.post("/",postPerson);
 router.put("/:idUser",updatePerson);
 router.put("/disable/:idUser",disablePerson);
-router.delete("/:idUser",deletePerson);
+router.delete("/:idUser", logMiddleware,deletePerson);
 router.get("/:idUser/grupos", gruposOfUser);
 router.get("/:idUser/tickets", ticketsOfUser);
 
