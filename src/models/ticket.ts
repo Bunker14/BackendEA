@@ -19,7 +19,7 @@ const TicketSchema = new Schema<Ticket>(
         },
 
         anfitrion:{
-            type: [Schema.Types.ObjectId],
+            type: Schema.Types.ObjectId,
             ref: 'users',
             required: false,
         }

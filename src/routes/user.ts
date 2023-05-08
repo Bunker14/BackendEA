@@ -3,7 +3,7 @@
 import { Request, Response, Router } from "express";
 import { ticketsOfUser,gruposOfUser,deletePerson, getPerson, getPeople, postPerson, updatePerson, getPeoplePaginado, disablePerson} from "../controllers/user";
 import { getUsersPaginado } from "../services/user";
-import { logMiddleware } from "../middleware/log";
+import { logMiddleware, loginMiddleware } from "../middleware/log";
 
 const router = Router(); //es el manejador de las rutas, las interpreta, con esto podremos crear los GET, POST ....
 
@@ -17,7 +17,7 @@ router.post("/",postPerson);
 router.put("/:idUser",updatePerson);
 router.put("/disable/:idUser",disablePerson);
 router.delete("/:idUser",deletePerson);
-router.get("/:idUser/grupos", gruposOfUser);
+router.get("/:idUser/grupos",loginMiddleware, gruposOfUser);
 router.get("/:idUser/tickets", ticketsOfUser);
 
 

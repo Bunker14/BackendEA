@@ -5,6 +5,7 @@ import { User } from "../interfaces/user.interface";
 import GrupoModel from "../models/grupo";
 import UserModel from "../models/user";
 
+
 const insertGrupo = async(item: Grupo) => {
     const caracteres = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     let codigo: string;
@@ -79,6 +80,14 @@ const exitGrupo = async(UserName: string, GrupoName: string ) => {
     console.log(responseItem?.users);
     return responseItem;
 } 
+
+const populateGrupo= async(id: string ) => {
+    const responseItem = await GrupoModel.findOne({_id: id}).populate({path:'tickets',populate:{path:'productos'}}).populate('users');
+    return responseItem;
+
+}
+
+
     
 
-export {insertGrupo, getGrupos, getGrupo, updateGrupo, deleteGrupo, joinGrupo, insertTicketGrupo, exitGrupo};
+export {insertGrupo, getGrupos, getGrupo, updateGrupo, deleteGrupo, joinGrupo, insertTicketGrupo, exitGrupo,populateGrupo as pagadoAnfitrionGrupo};

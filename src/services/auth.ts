@@ -28,7 +28,7 @@ const loginUser=async(email:string,password:string)=>{
     if(!isCorrect) return "PASSWORD_INCORRECT";
     
     console.log(checkIs.role);
-    const token=generateToken(checkIs.role);
+    const token=generateToken(checkIs.email);
     const data={
         token,
         user:checkIs,
