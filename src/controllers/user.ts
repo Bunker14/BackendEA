@@ -2,7 +2,6 @@ import { Request,Response } from "express";
 import { getTicketsOfUser,insertUser,getUsers,getUser,updateUser,deleteUser, getUsersPaginado, disableUser,getGruposOfUser} from "../services/user";
 import { handleHttp } from "../utils/error.handle";
 import {registerNewUser,loginUser}from "../services/auth";
-import { JwtHeader } from "jsonwebtoken";
 
 const getPerson=async({params}:Request,res:Response)=>{
     try{
@@ -75,14 +74,9 @@ const disablePerson=async ({params}:Request,res:Response)=>{
     }
 };
 
-const gruposOfUser=async(req:Request,res:Response)=>{
+const gruposOfUser=async({params}:Request,res:Response)=>{
     try{
-        const {idUser,token}=req.params;
-
-        const header = req.headers;
-    const userAgent = header["user-agent"];
-        console.log(header.authorization);
-
+        const {idUser}=params;
         const response=await getGruposOfUser(idUser);
         const data=response ? response:"NOT_FOUND";
         res.send(data);
@@ -114,7 +108,7 @@ const registerCtrl=async ({body}:Request,res:Response)=>{
 const loginCtrl=async ({body}:Request,res:Response)=>{
     try{
         const {email,password}=body;
-        const responseUser=await loginUser(email,password);
+        const responseUser=await loginUser(email, password);
         if(responseUser==="PASSWORD_INCORRECT"){
             res.status(403);
             res.send(responseUser);
