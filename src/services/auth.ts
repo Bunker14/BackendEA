@@ -6,17 +6,27 @@ import { generateToken } from "../utils/jwt.handle";
 
 
 const registerNewUser=async(user:User)=>{
-    //Busqueda en la BBDD para ver si existe el mismo nombre i apellido
-    const checkIs =await UserModel.findOne({email:user.email})
-    //Si el usuario existe
-    if (checkIs)return "ALREADY_USER";
-    //Si el usario NO existe seguimos
-    user.password=await encrypt(user.password);
-    const registerNewUser=await insertUser(user);
-    return registerNewUser;
-;
-
+    // Validate the email format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const isValidEmail = emailRegex.test(user.email);
+    if (!isValidEmail) {
+        return "INVALID_EMAIL";
+    }
+    // Check if the password is blank
+    if (user.password.trim() === "") {
+        return "BLANK_PASSWORD";
+    }
+    // Check if the user already exists
+    const existingUser = await UserModel.findOne({ email: user.email });
+    if (existingUser) {
+        return "ALREADY_USER";
+    }
+    // Encrypt the user's password and insert the user into the database
+    user.password = await encrypt(user.password);
+    const newUser = await insertUser(user);
+    return newUser;
 };
+
 const loginUser=async( email:string, password: string)=>{
     const checkIs =await UserModel.findOne({email})
     //Si el usuario NO existe
