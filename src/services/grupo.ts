@@ -25,6 +25,12 @@ const insertGrupo = async(item: Grupo) => {
     return responseInsert;
 };
 
+const getGrupoCodigo = async(id: string) => {
+    const grupo1 = await GrupoModel.findOne({_id: id});
+    const responseItem = grupo1?.codigo; 
+    return responseItem;
+};
+
 const getGrupos = async() => {
     const responseItem = await GrupoModel.find({});
     return responseItem;
@@ -94,4 +100,4 @@ const populateGrupo= async(id: string ) => {
 
     
 
-export {insertGrupo, getGrupos, getGrupo, updateGrupo, deleteGrupo, joinGrupo, insertTicketGrupo, exitGrupo,populateGrupo as pagadoAnfitrionGrupo};
+export {insertGrupo, getGrupos, getGrupo, updateGrupo, deleteGrupo, joinGrupo, insertTicketGrupo, exitGrupo, populateGrupo as pagadoAnfitrionGrupo, getGrupoCodigo};
