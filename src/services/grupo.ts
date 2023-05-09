@@ -20,7 +20,6 @@ const insertGrupo = async(item: Grupo) => {
     if (item.name.trim() === "") {
         return "NOMBRE_VACIO";
     }
-    
     const responseInsert = await GrupoModel.create(item);
     return responseInsert;
 };
