@@ -17,6 +17,10 @@ const insertGrupo = async(item: Grupo) => {
         item.codigo = codigo;
     } while (await GrupoModel.exists({ codigo: codigo }));
 
+    if (item.name.trim() === "") {
+        return "NOMBRE_VACIO";
+    }
+    
     const responseInsert = await GrupoModel.create(item);
     return responseInsert;
 };
