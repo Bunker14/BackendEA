@@ -11,11 +11,11 @@ const router = Router(); //es el manejador de las rutas, las interpreta, con est
 /**
  * http://localhost:3002/items [GET]
  */
-router.get("/all", checkJwt, get_Productos);
-router.get("/:idProducto", checkJwt, get_Producto);
-router.put("/:idProducto", checkJwt, update_Prodcuto);
-router.post("/", checkJwt, create_Producto);
-router.delete("/:idProducto", checkJwt, delete_Producto);
+router.get("/all", get_Productos);
+router.get("/:idProducto", get_Producto);
+router.put("/:idProducto", update_Prodcuto);
+router.post("/", create_Producto);
+router.delete("/:idProducto", delete_Producto);
 
 
 export {router};

@@ -9,15 +9,15 @@ const router = Router(); //es el manejador de las rutas, las interpreta, con est
 /**
  * http://localhost:3002/items [GET]
  */
-router.get("/all", checkJwt, get_Grupos);
-router.get("/:idGrupo", checkJwt, get_Grupo);
-router.get("/:idGrupo/code",checkJwt, get_GrupoCode);
-router.put("/:idGrupo", checkJwt, update_Grupo);
-router.post("/", checkJwt, create_Grupo);
-router.delete("/:idGrupo", checkJwt, delete_Grupo);
-router.post("/join", checkJwt, join_Grupo);
-router.post("/exit", checkJwt, exit_Grupo);
-router.put("/", checkJwt, insert_TicketGrupo);
+router.get("/all", get_Grupos);
+router.get("/:idGrupo", get_Grupo);
+router.get("/:idGrupo/code", get_GrupoCode);
+router.put("/:idGrupo", update_Grupo);
+router.post("/", create_Grupo);
+router.delete("/:idGrupo", delete_Grupo);
+router.post("/join", join_Grupo);
+router.post("/exit", exit_Grupo);
+router.put("/", insert_TicketGrupo);
 
 
 

@@ -11,8 +11,8 @@ const router = Router(); //es el manejador de las rutas, las interpreta, con est
 /**
  * http://localhost:3002/items [GET]
  */
-router.post("/", checkJwt, create_Asignacion);
-// router.put("/:idAsignacion", checkJwt, update_Asignacion);
-router.delete("/:idAsignacion", checkJwt, delete_Asignacion);
+router.post("/", create_Asignacion);
+// router.put("/:idAsignacion", update_Asignacion);
+router.delete("/:idAsignacion", delete_Asignacion);
 
 export {router};

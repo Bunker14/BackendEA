@@ -10,17 +10,17 @@ const router = Router(); //es el manejador de las rutas, las interpreta, con est
 /**
  * http://localhost:3002/items [GET]
  */
-router.get("/all", checkJwt, getPeople);
-router.get("/allPaginado/:limite1/:pagina1", checkJwt, getPeoplePaginado);
-router.get("/:idUser", checkJwt, getPerson);
-router.post("/", checkJwt, postPerson);
-router.put("/:idUser", checkJwt, updatePerson);
-router.put("/disable/:idUser", checkJwt, disablePerson);
+router.get("/all", getPeople);
+router.get("/allPaginado/:limite1/:pagina1", getPeoplePaginado);
+router.get("/:idUser", getPerson);
+router.post("/", postPerson);
+router.put("/:idUser", updatePerson);
+router.put("/disable/:idUser", disablePerson);
 
-router.delete("/:idUser",checkJwt, deletePerson);
-router.get("/:idUser/grupos",checkJwt, gruposOfUser);
+router.delete("/:idUser", deletePerson);
+router.get("/:idUser/grupos", gruposOfUser);
 
-router.get("/:idUser/tickets", checkJwt, ticketsOfUser);
+router.get("/:idUser/tickets", ticketsOfUser);
 
 
 export {router};

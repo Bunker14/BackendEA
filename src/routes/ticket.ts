@@ -10,14 +10,14 @@ const router = Router(); //es el manejador de las rutas, las interpreta, con est
 /**
  * http://localhost:3002/items [GET]
  */
-router.get("/all", checkJwt, get_Tickets);
-router.get("/allPaginado/:pagina1", checkJwt, get_TicketsPaginado);
-router.get("/:idTicket", checkJwt, get_Ticket);
-router.post("/", checkJwt, create_Ticket);
-router.delete("/:idTicket", checkJwt, delete_Ticket);
-router.put("/:idTicket", checkJwt, update_Ticket);
-router.post("/insert", checkJwt, insert_ProductoToTicket)
-router.get("/:idTicket/productos", checkJwt, get_productos_ticket)
+router.get("/all", get_Tickets);
+router.get("/allPaginado/:pagina1", get_TicketsPaginado);
+router.get("/:idTicket", get_Ticket);
+router.post("/", create_Ticket);
+router.delete("/:idTicket", delete_Ticket);
+router.put("/:idTicket", update_Ticket);
+router.post("/insert", insert_ProductoToTicket)
+router.get("/:idTicket/productos", get_productos_ticket)
 
 
 
