@@ -2,7 +2,7 @@ import { Request,Response } from "express";
 import { insertUser,getUsers,getUser,updateUser,deleteUser} from "../services/user";
 import { handleHttp } from "../utils/error.handle";
 import { deleteGrupo, getGrupo, getGrupos, insertGrupo, joinGrupo, updateGrupo } from "../services/grupo";
-import { createAsignacion, deleteAsignacion, updateAsignacion } from "../services/asignacion";
+import { createAsignacion, deleteAsignacion } from "../services/asignacion";
 import { getProducto } from "../services/producto";
 import { getTicket } from "../services/ticket";
 
@@ -35,16 +35,16 @@ const delete_Asignacion=async ({params}:Request,res:Response)=>{
 
 
 
-const update_Asignacion=async ({params,body}:Request,res:Response)=>{
-    try{
-        const {idAsignacion}=params;
-        const response=await updateAsignacion(idAsignacion, body);
-        res.send(response);
-    } catch(e){
-        handleHttp(res,"ERROR_UPDATE_ASIGNACION");
-    }
-};
+// const update_Asignacion=async ({params,body}:Request,res:Response)=>{
+//     try{
+//         const {idAsignacion}=params;
+//         const response=await updateAsignacion(idAsignacion, body);
+//         res.send(response);
+//     } catch(e){
+//         handleHttp(res,"ERROR_UPDATE_ASIGNACION");
+//     }
+// };
 
 
 
-export{create_Asignacion,  delete_Asignacion, update_Asignacion};
+export{create_Asignacion,  delete_Asignacion};

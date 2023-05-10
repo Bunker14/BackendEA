@@ -2,6 +2,7 @@
 import { Asignacion } from "../interfaces/asignacion.interface";
 import { Producto } from "../interfaces/producto.interface";
 import AsignacionModel from "../models/asignacion";
+import UserModel from "../models/user";
 import ProductoModel from "../models/producto";
 import { Types } from "mongoose";
 
@@ -11,12 +12,12 @@ const createAsignacion = async(item: Asignacion) => {
     return responseInsert;
 };
 
-const updateAsignacion = async(idProducto: string, idAsignacion: string) => {
-    const responseInsert = await AsignacionModel.findOneAndUpdate({_id: idAsignacion}, 
-    {$addToSet: {producto: new Types.ObjectId(idProducto)}},
-    {new: true}).populate('productos');
-    return responseInsert;
-};
+// const updateAsignacion = async(idProducto: string, idAsignacion: string) => {
+//     const responseInsert = await AsignacionModel.findOneAndUpdate({_id: idAsignacion}, 
+//     {$addToSet: {producto: new Types.ObjectId(idProducto)}},
+//     {new: true}).populate('productos');
+//     return responseInsert;
+// };
 
 
 const deleteAsignacion = async(id: string) => {
@@ -24,5 +25,22 @@ const deleteAsignacion = async(id: string) => {
     return responseItem;
 }
 
+const getAsignacionesUser = async(idUser: string) => {
 
-export {createAsignacion, deleteAsignacion, updateAsignacion};
+    const user = await UserModel.findById(idUser);
+    if (!user) {
+      throw new Error("User not found");
+    }
+    const asignaciones = await AsignacionModel.find({ usuario: idUser });
+    return asignaciones;
+}
+
+const PrecioPendientePagoTicket = async(idUser: string, idTicket: string) => {
+    
+    const asignaciones = await AsignacionModel.find({ user: idUser, ticket: idTicket });
+
+}
+
+
+
+export {createAsignacion, deleteAsignacion,};
