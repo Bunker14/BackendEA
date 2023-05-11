@@ -6,6 +6,7 @@ import GrupoModel from "../models/grupo";
 import UserModel from "../models/user";
 import ProductoModel from "../models/producto";
 import { Producto } from "../interfaces/producto.interface";
+import {Asignacion} from "../interfaces/asignacion.interface";
 
 const insertProducto = async(item: Producto) => {
     const responseInsert = await ProductoModel.create(item);
@@ -32,6 +33,24 @@ const deleteProducto = async(id: string) => {
     return responseItem;
 }
 
+// const getAsignacionesUser = async(idProducto: string, idUser: string): Promise<Asignacion[]> => {
+
+
+//     const producto: Producto | null = await ProductoModel.findById(IdProducto).populate('asignaciones').exec();
+
+//     if (!producto) {
+//       throw new Error('No se encontró el producto');
+//     }
+
+//     const asignacionesDeUsuario: Asignacion[] = producto.asignaciones.filter(asignacion =>
+//       asignacion.usuario.includes(idUser)
+//     );
+
+//     const asignacionesDeUsuario = await 
+
+
+//     return asignacionesDeUsuario;
+// }
 
 
 

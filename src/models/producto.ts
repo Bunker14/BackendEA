@@ -18,6 +18,10 @@ const ProductoSchema = new Schema<Producto>(
         totalprice:{
             type: Number,
             required: false,
+        },
+        asignaciones:{
+            type: [Schema.Types.ObjectId],
+            ref:'Asignaciones',
         }
     },
     {

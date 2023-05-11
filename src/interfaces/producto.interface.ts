@@ -5,4 +5,5 @@ export interface Producto {
     quantity: number;
     price: number;
     totalprice?: number;
+    asignaciones: ObjectId[];
 }

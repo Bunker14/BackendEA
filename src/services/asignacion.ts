@@ -38,6 +38,7 @@ const getAsignacionesUser = async(idUser: string) => {
 const PrecioPendientePagoTicket = async(idUser: string, idTicket: string) => {
     
     const asignaciones = await AsignacionModel.find({ user: idUser, ticket: idTicket });
+    // const dinero = await ProductoModel.find({producto: asignaciones.producto})
 
 }
 

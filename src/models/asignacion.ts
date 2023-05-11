@@ -7,18 +7,10 @@ const SubjectSchema = new Schema<Asignacion>(
             type: [Schema.Types.ObjectId],
             ref:'users',
         },
-        producto:{
-            type: [Schema.Types.ObjectId],
-            ref:'productos',
-        },
         cantidad:{
             type: Number,
             required: true,
-        },
-        ticket:{
-            type: [Schema.Types.ObjectId],
-            ref:'tickets',
-        },
+        }
     },
     {
         timestamps: true,
