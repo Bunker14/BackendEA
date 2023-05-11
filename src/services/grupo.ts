@@ -4,6 +4,7 @@ import { Types } from "mongoose";
 import { User } from "../interfaces/user.interface";
 import GrupoModel from "../models/grupo";
 import UserModel from "../models/user";
+import AsignacionModel from "../models/asignacion";
 
 
 const insertGrupo = async(item: Grupo) => {
@@ -96,6 +97,7 @@ const populateGrupo= async(id: string ) => {
     return responseItem;
 
 }
+
 
 
     
