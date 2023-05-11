@@ -27,15 +27,12 @@ const loginMiddleware = (req: Request, res: Response, next: NextFunction) => {
     
     console.log(decode);
     if (decode.includes("@")){
-      console.log("1");
       next();
     } else {
-      console.log("2");
         res.status(400);
         res.send("PERMISOS NO VALIDOS");
     }
     }catch(e){
-      console.log("3");
         res.status(400);
         res.send("SESSION_NO_VALIDA");
     }
