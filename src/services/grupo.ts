@@ -60,6 +60,10 @@ const deleteGrupo = async(id: string) => {
 
 const joinGrupo = async(UserName: string, codigo: string ) => {
     const GrupoSeleccionado = await GrupoModel.findOne({codigo:codigo});
+    console.log(GrupoSeleccionado);
+    if(!GrupoSeleccionado){
+        return null;
+    }
     const PasswordGrupo = GrupoSeleccionado?.codigo;
     if ( PasswordGrupo === codigo) {
     const responseItem = await GrupoModel.findOneAndUpdate({codigo:codigo},
