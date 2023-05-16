@@ -32,6 +32,12 @@ const getGrupoCodigo = async(id: string) => {
     return responseItem;
 };
 
+const getAllGrupoCodigos = async () => {
+    const grupos = await GrupoModel.find({});
+    const codigos = grupos.map(grupo => grupo.codigo);
+    return codigos;
+};
+
 const getGrupos = async() => {
     const responseItem = await GrupoModel.find({});
     return responseItem;
@@ -102,4 +108,4 @@ const populateGrupo= async(id: string ) => {
 
     
 
-export {insertGrupo, getGrupos, getGrupo, updateGrupo, deleteGrupo, joinGrupo, insertTicketGrupo, exitGrupo, populateGrupo as pagadoAnfitrionGrupo, getGrupoCodigo};
+export {insertGrupo, getGrupos, getGrupo, updateGrupo, deleteGrupo, joinGrupo, insertTicketGrupo, exitGrupo, populateGrupo as pagadoAnfitrionGrupo, getGrupoCodigo, getAllGrupoCodigos};

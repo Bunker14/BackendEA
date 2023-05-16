@@ -1,7 +1,7 @@
 import { Request,Response } from "express";
 import { insertUser,getUsers,getUser,updateUser,deleteUser} from "../services/user";
 import { handleHttp } from "../utils/error.handle";
-import { deleteGrupo, exitGrupo, getGrupo, getGrupos, insertGrupo, insertTicketGrupo, joinGrupo, updateGrupo,pagadoAnfitrionGrupo, getGrupoCodigo } from "../services/grupo";
+import { deleteGrupo, getAllGrupoCodigos, exitGrupo, getGrupo, getGrupos, insertGrupo, insertTicketGrupo, joinGrupo, updateGrupo,pagadoAnfitrionGrupo, getGrupoCodigo } from "../services/grupo";
 
 const get_Grupo=async({params}:Request,res:Response)=>{
     try{
@@ -22,6 +22,16 @@ const get_GrupoCode=async({params}:Request,res:Response)=>{
         res.send(data);
     } catch(e){
         handleHttp(res,"ERROR_GET_GRUPO");
+    }
+};
+
+const get_AllGrupoCodigos=async(req:Request,res:Response)=>{
+    try{
+        const response=await getAllGrupoCodigos();
+        const data=response ? response:"NOT_FOUND";
+        res.send(data);
+    } catch(e){
+        handleHttp(res,"ERROR_GET_CODIGOS");
     }
 };
 
@@ -108,4 +118,4 @@ const get_populateGrupo=async({params}:Request,res:Response)=>{
 
 
 
-export{get_Grupo, get_Grupos, join_Grupo, update_Grupo, delete_Grupo, create_Grupo, insert_TicketGrupo, exit_Grupo,get_populateGrupo, get_GrupoCode};
+export{get_Grupo, get_Grupos, join_Grupo, update_Grupo, delete_Grupo, create_Grupo, insert_TicketGrupo, exit_Grupo,get_populateGrupo, get_GrupoCode, get_AllGrupoCodigos};
