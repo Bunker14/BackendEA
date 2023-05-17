@@ -11,10 +11,6 @@ const ProductoSchema = new Schema<Producto>(
             type: Number,
             required: true,
         },
-        price:{
-            type: Number,
-            required: true,
-        },
         totalprice:{
             type: Number,
             required: false,

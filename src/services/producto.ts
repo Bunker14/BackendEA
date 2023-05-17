@@ -34,7 +34,7 @@ const deleteProducto = async (id: string) => {
     return responseItem;
 }
 const putAsignacionToProducto = async (idProducto: string, data: Asignacion) => {
-    
+
     const productoBBDD = await ProductoModel.findOne({ _id: idProducto });
     if (productoBBDD != undefined) {
         var i: number = 0;
@@ -47,15 +47,15 @@ const putAsignacionToProducto = async (idProducto: string, data: Asignacion) => 
             }
             i++;
         }
-        if(encontrado){
+        if (encontrado && asignacion?.usuario==data.usuario) {
             const responseItem = await AsignacionModel.findOneAndUpdate({ _id: asignacion?.id }, data, { new: true });
-    return responseItem;
+            return responseItem;
         }
-        else{
+        else {
             const responseInsert = await AsignacionModel.create(data);
-            const responseItem = await ProductoModel.findOneAndUpdate({_id:idProducto},
-                {$addToSet: {asignaciones: new Types.ObjectId(responseInsert._id)}},
-                {new: true}).populate('asignaciones');
+            const responseItem = await ProductoModel.findOneAndUpdate({ _id: idProducto },
+                { $addToSet: { asignaciones: new Types.ObjectId(responseInsert._id) } },
+                { new: true }).populate('asignaciones');
             console.log(responseItem);
             return responseItem;
         }
@@ -90,4 +90,4 @@ const putAsignacionToProducto = async (idProducto: string, data: Asignacion) => 
 
 
 
-export { insertProducto, getProdcutos, getProducto, updateProducto, deleteProducto,putAsignacionToProducto };
+export { insertProducto, getProdcutos, getProducto, updateProducto, deleteProducto, putAsignacionToProducto };
