@@ -112,4 +112,4 @@ const populateGrupo= async(id: string ) => {
 
     
 
-export {insertGrupo, getGrupos, getGrupo, updateGrupo, deleteGrupo, joinGrupo, insertTicketGrupo, exitGrupo, populateGrupo as pagadoAnfitrionGrupo, getGrupoCodigo, getAllGrupoCodigos};
+export {insertGrupo, getGrupos, getGrupo, updateGrupo, deleteGrupo, joinGrupo, insertTicketGrupo, exitGrupo, populateGrupo, getGrupoCodigo, getAllGrupoCodigos};

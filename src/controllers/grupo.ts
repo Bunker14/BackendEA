@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { insertUser, getUsers, getUser, updateUser, deleteUser } from "../services/user";
 import { handleHttp, notFoudError } from "../utils/error.handle";
-import { deleteGrupo, getAllGrupoCodigos, exitGrupo, getGrupo, getGrupos, insertGrupo, insertTicketGrupo, joinGrupo, updateGrupo, pagadoAnfitrionGrupo, getGrupoCodigo } from "../services/grupo";
+import { deleteGrupo, getAllGrupoCodigos, exitGrupo, getGrupo, getGrupos, insertGrupo, insertTicketGrupo, joinGrupo, updateGrupo, populateGrupo, getGrupoCodigo } from "../services/grupo";
 
 const get_Grupo = async ({ params }: Request, res: Response) => {
     try {
@@ -116,7 +116,7 @@ const insert_TicketGrupo = async ({ body }: Request, res: Response) => {
 const get_populateGrupo = async ({ params }: Request, res: Response) => {
     try {
         const { idGrupo } = params;
-        const response = await pagadoAnfitrionGrupo(idGrupo);
+        const response = await populateGrupo(idGrupo);
         const data = response ? response : "NOT_FOUND";
         res.send(data);
     } catch (e) {
