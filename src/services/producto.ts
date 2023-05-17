@@ -19,11 +19,11 @@ const getProdcutos = async() => {
 };
 
 const getProducto = async(id: string) => {
-    const responseItem = await ProductoModel.findOne({_id: id});
+    const responseItem = await ProductoModel.findOne({_id: id}).populate('asignaciones');
     return responseItem;
 };
 
-const updateProducto = async(id: string, data: Grupo) => {
+const updateProducto = async(id: string, data: Producto) => {
     const responseItem = await ProductoModel.findOneAndUpdate({_id: id}, data,{new: true});
     return responseItem;
 };
@@ -31,6 +31,19 @@ const updateProducto = async(id: string, data: Grupo) => {
 const deleteProducto = async(id: string) => {
     const responseItem = await ProductoModel.findOneAndRemove({_id: id});
     return responseItem;
+}
+const putAsignacionToProducto=async (idProducto:string, data: Asignacion)=>{
+    const productoBBDD = await ProductoModel.findOne({_id: idProducto}).populate('asignaciones');
+    if(productoBBDD!=undefined){
+        //const asignacionesBBDD: Asignacion[] = productoBBDD.asignaciones;
+
+        //var encontrado = asignacionesBBDD.find(asignacion => asignacion.usuario === data.usuario);
+
+    }
+    
+    
+
+    
 }
 
 // const getAsignacionesUser = async(idProducto: string, idUser: string): Promise<Asignacion[]> => {

@@ -12,6 +12,11 @@ const createAsignacion = async(item: Asignacion) => {
     return responseInsert;
 };
 
+const updateAsignacion = async(id: string, data: Asignacion) => {
+    const responseItem = await AsignacionModel.findOneAndUpdate({_id: id}, data,{new: true});
+    return responseItem;
+};
+
 // const updateAsignacion = async(idProducto: string, idAsignacion: string) => {
 //     const responseInsert = await AsignacionModel.findOneAndUpdate({_id: idAsignacion}, 
 //     {$addToSet: {producto: new Types.ObjectId(idProducto)}},
@@ -44,4 +49,4 @@ const PrecioPendientePagoTicket = async(idUser: string, idTicket: string) => {
 
 
 
-export {createAsignacion, deleteAsignacion,};
+export {createAsignacion, deleteAsignacion,updateAsignacion};

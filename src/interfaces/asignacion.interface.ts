@@ -1,6 +1,6 @@
 import { ObjectId } from "mongoose";
 
 export interface Asignacion {
-    usuario: ObjectId[];
+    usuario: ObjectId;
     cantidad: number;
 }

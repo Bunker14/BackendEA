@@ -4,7 +4,7 @@ import { Asignacion } from "../interfaces/asignacion.interface";
 const SubjectSchema = new Schema<Asignacion>(
     {
         usuario:{
-            type: [Schema.Types.ObjectId],
+            type: Schema.Types.ObjectId,
             ref:'users',
         },
         cantidad:{

@@ -93,7 +93,7 @@ const exitGrupo = async(UserName: string, GrupoName: string ) => {
 } 
 
 const populateGrupo= async(id: string ) => {
-    const responseItem = await GrupoModel.findOne({_id: id}).populate({path:'tickets',populate:{path:'productos'}}).populate('users');
+    const responseItem = await GrupoModel.findOne({_id: id}).populate({path:'tickets',populate:{path:'productos',populate:{path:'asignaciones'}}}).populate('users');
     return responseItem;
 
 }
