@@ -118,7 +118,9 @@ const get_populateGrupo = async ({ params }: Request, res: Response) => {
         const { idGrupo } = params;
         const response = await pagadoAnfitrionGrupo(idGrupo);
         const data = response ? response : "NOT_FOUND";
+        console.log(data);
         res.send(data);
+        
     } catch (e) {
         handleHttp(res, "ERROR_GET_GRUPO");
     }
