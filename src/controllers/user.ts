@@ -110,10 +110,10 @@ const loginCtrl=async ({body}:Request,res:Response)=>{
         const {email,password}=body;
         const responseUser=await loginUser(email, password);
         if(responseUser==="PASSWORD_INCORRECT"){
-            res.status(403);
+            res.status(202);
             res.send(responseUser);
         } else if(responseUser==="NOT_FOUND_USER"){
-            res.status(402);
+            res.status(201);
             res.send(responseUser);
         }
         else{

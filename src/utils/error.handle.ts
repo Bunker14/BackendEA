@@ -7,4 +7,11 @@ const handleHttp = (res: Response, error: string, errorRaw?: any) => {
     res.send({error});
 };
 
-export {handleHttp};
+const notFoudError= (res: Response, error: string, errorRaw?: any) => {
+    console.log(errorRaw);
+    res.status(201);
+    res.send({error});
+};
+
+
+export {handleHttp,notFoudError};

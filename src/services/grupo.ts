@@ -32,6 +32,12 @@ const getGrupoCodigo = async(id: string) => {
     return responseItem;
 };
 
+const getAllGrupoCodigos = async () => {
+    const grupos = await GrupoModel.find({});
+    const codigos = grupos.map(grupo => grupo.codigo);
+    return codigos;
+};
+
 const getGrupos = async() => {
     const responseItem = await GrupoModel.find({});
     return responseItem;
@@ -54,6 +60,10 @@ const deleteGrupo = async(id: string) => {
 
 const joinGrupo = async(UserName: string, codigo: string ) => {
     const GrupoSeleccionado = await GrupoModel.findOne({codigo:codigo});
+    console.log(GrupoSeleccionado);
+    if(!GrupoSeleccionado){
+        return null;
+    }
     const PasswordGrupo = GrupoSeleccionado?.codigo;
     if ( PasswordGrupo === codigo) {
     const responseItem = await GrupoModel.findOneAndUpdate({codigo:codigo},
@@ -102,4 +112,4 @@ const populateGrupo= async(id: string ) => {
 
     
 
-export {insertGrupo, getGrupos, getGrupo, updateGrupo, deleteGrupo, joinGrupo, insertTicketGrupo, exitGrupo, populateGrupo as pagadoAnfitrionGrupo, getGrupoCodigo};
+export {insertGrupo, getGrupos, getGrupo, updateGrupo, deleteGrupo, joinGrupo, insertTicketGrupo, exitGrupo, populateGrupo as pagadoAnfitrionGrupo, getGrupoCodigo, getAllGrupoCodigos};
