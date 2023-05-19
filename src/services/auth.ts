@@ -19,6 +19,7 @@ const registerNewUser=async(user:User)=>{
     // Check if the user already exists
     const existingUser = await UserModel.findOne({ email: user.email });
     if (existingUser) {
+        
         return "ALREADY_USER";
     }
     // Encrypt the user's password and insert the user into the database

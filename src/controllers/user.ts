@@ -98,9 +98,23 @@ const ticketsOfUser=async({params}:Request,res:Response)=>{
     
 };
 const registerCtrl=async ({body}:Request,res:Response)=>{
-    try{const response=await registerNewUser(body);
-    const data=response ? response:"NOT_FOUND";
-        res.send(data);
+    try{
+        const response=await registerNewUser(body);
+        if(response==="INVALID_EMAIL"){
+            res.status(210);
+            res.send(response);
+        } else if(response==="BLANK_PASSWORD"){
+            res.status(211);
+            res.send(response);
+        }
+        else if(response==="ALREADY_USER"){
+            res.status(212);
+            res.send(response);
+        }
+        else{
+            res.send(response);
+        }
+
     } catch(e){
         handleHttp(res,"ERROR_REGISTER_USER");
     }
