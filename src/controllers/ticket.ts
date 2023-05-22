@@ -1,9 +1,10 @@
 import { Request, Response } from "express";
 import { insertUser, getUsers, getUser, updateUser, deleteUser } from "../services/user";
 import { handleHttp } from "../utils/error.handle";
-import { deleteGrupo, getGrupo, getGrupos, insertGrupo, joinGrupo, updateGrupo } from "../services/grupo";
+import { deleteGrupo, getGrupo, getGrupos, insertGrupo, insertTicketGrupo, joinGrupo, updateGrupo } from "../services/grupo";
 import { getProductosTicket, deleteTicket, getTicket, getTickets, getTicketsPaginado, insertProductoToTicket, insertTicket, updateTicket } from "../services/ticket";
 import { insertProducto } from "../services/producto";
+import TicketModel from "../models/ticket";
 
 const get_Ticket = async ({ params }: Request, res: Response) => {
     try {
@@ -40,6 +41,22 @@ const get_Tickets = async (req: Request, res: Response) => {
 
 
 const create_Ticket = async ({ body }: Request, res: Response) => {
+    try {
+        var ticket = {
+            "nombre": body.nombre,
+            "location": body.location,
+            "anfitrion":body.userId
+        };
+         
+        const responseTicket = await insertTicket(ticket);
+        const responseTicketGrupo=await insertTicketGrupo(body.grupoId,responseTicket.id);
+        res.send(responseTicketGrupo);
+    } catch (e) {
+        handleHttp(res, "ERROR_CREATE_TICKET");
+    }
+};
+
+const create_Ticket_and_insertToGrupo = async ({ body }: Request, res: Response) => {
     try {
         const responsePerson = await insertTicket(body);
         res.send(responsePerson);
