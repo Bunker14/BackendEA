@@ -14,6 +14,8 @@ const insertProducto = async (item: Producto) => {
     return responseInsert;
 };
 
+
+
 const getProdcutos = async () => {
     const responseItem = await ProductoModel.find({});
     return responseItem;
@@ -73,7 +75,7 @@ const getProductobyParametros = async (name: string, quantity: string, totalpric
     const responseItem = await ProductoModel.findOne({ name: name,
         quantity: parseInt(quantity),
         totalprice: parseInt(totalprice) });
-    return responseItem;
+    return responseItem?.id;
 }
 
 // const getAsignacionesUser = async(idProducto: string, idUser: string): Promise<Asignacion[]> => {

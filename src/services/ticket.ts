@@ -43,6 +43,8 @@ const deleteTicket = async(id: string) => {
 }
 
 const insertProductoToTicket = async(idTicket: string, idProducto: string) => {
+    console.log(idTicket);
+    console.log(idProducto);
     const responseItem = await TicketModel.findOneAndUpdate({_id:idTicket},
         {$addToSet: {productos: new Types.ObjectId(idProducto)}},
         {new: true}).populate('productos');

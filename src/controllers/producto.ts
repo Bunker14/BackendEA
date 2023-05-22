@@ -1,7 +1,8 @@
-import { Request, Response } from "express";
+import { Request, Response, response } from "express";
 import { insertUser, getUsers, getUser, updateUser, deleteUser } from "../services/user";
 import { handleHttp } from "../utils/error.handle";
 import { insertProducto, getProdcutos, getProducto, updateProducto, deleteProducto, putAsignacionToProducto, getProductobyParametros } from "../services/producto";
+import { getProductosTicket, deleteTicket, getTicket, getTickets, getTicketsPaginado, insertProductoToTicket, insertTicket, updateTicket } from "../services/ticket";
 import { Asignacion } from "../interfaces/asignacion.interface";
 import AsignacionModel from "../models/asignacion";
 
@@ -83,9 +84,38 @@ const getProductoby_Parametros = async ({ body }: Request, res: Response) => {
         res.send(response);
     } catch (e) {
         handleHttp(res, "ERROR_GET_PRODUCTO");
+        console.log(e);
     }
+    
+};
+
+
+const crearyadd_producto = async ({ params, body }: Request, res: Response) => {
+    console.log(body);
+    try {
+        const { idTicket } = params;
+        const { name, quantity, totalprice } = body;
+        const responseProducto = await insertProducto(body);
+        console.log(responseProducto);
+        if(responseProducto){
+
+            const productonuevo = await getProductobyParametros(name, quantity, totalprice); 
+            console.log(productonuevo);
+            const idProducto = productonuevo;
+            const response = await insertProductoToTicket(idTicket, productonuevo );
+
+            res.send(response);
+
+        }else{
+        }
+        
+    } catch (e) {
+        handleHttp(res, "ERROR_GET_PRODUCTO");
+        console.log(e);
+    }
+    
 };
 
 
 
-export { get_Producto, get_Productos, create_Producto, delete_Producto, update_Prodcuto, putAsignacionToProducto_Producto , getProductoby_Parametros};
+export { get_Producto, get_Productos, create_Producto, delete_Producto, update_Prodcuto, putAsignacionToProducto_Producto , getProductoby_Parametros, crearyadd_producto};
