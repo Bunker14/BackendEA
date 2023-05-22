@@ -69,6 +69,13 @@ const putAsignacionToProducto = async (idProducto: string, data: Asignacion) => 
 
 }
 
+const getProductobyParametros = async (name: string, quantity: string, totalprice: string) => {
+    const responseItem = await ProductoModel.findOne({ name: name,
+        quantity: parseInt(quantity),
+        totalprice: parseInt(totalprice) });
+    return responseItem;
+}
+
 // const getAsignacionesUser = async(idProducto: string, idUser: string): Promise<Asignacion[]> => {
 
 
@@ -90,4 +97,4 @@ const putAsignacionToProducto = async (idProducto: string, data: Asignacion) => 
 
 
 
-export { insertProducto, getProdcutos, getProducto, updateProducto, deleteProducto, putAsignacionToProducto };
+export { insertProducto, getProdcutos, getProducto, updateProducto, deleteProducto, putAsignacionToProducto, getProductobyParametros };

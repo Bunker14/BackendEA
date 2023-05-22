@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { insertUser, getUsers, getUser, updateUser, deleteUser } from "../services/user";
 import { handleHttp } from "../utils/error.handle";
-import { insertProducto, getProdcutos, getProducto, updateProducto, deleteProducto, putAsignacionToProducto } from "../services/producto";
+import { insertProducto, getProdcutos, getProducto, updateProducto, deleteProducto, putAsignacionToProducto, getProductobyParametros } from "../services/producto";
 import { Asignacion } from "../interfaces/asignacion.interface";
 import AsignacionModel from "../models/asignacion";
 
@@ -75,6 +75,17 @@ const putAsignacionToProducto_Producto = async (body: Request, res: Response) =>
 };
 
 
+const getProductoby_Parametros = async ({ body }: Request, res: Response) => {
+    console.log(body);
+    try {
+        const { name, quantity, totalprice } = body;
+        const response = await getProductobyParametros(name, quantity, totalprice);
+        res.send(response);
+    } catch (e) {
+        handleHttp(res, "ERROR_GET_PRODUCTO");
+    }
+};
 
 
-export { get_Producto, get_Productos, create_Producto, delete_Producto, update_Prodcuto, putAsignacionToProducto_Producto };
+
+export { get_Producto, get_Productos, create_Producto, delete_Producto, update_Prodcuto, putAsignacionToProducto_Producto , getProductoby_Parametros};
