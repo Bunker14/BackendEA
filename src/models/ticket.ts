@@ -22,7 +22,11 @@ const TicketSchema = new Schema<Ticket>(
             type: Schema.Types.ObjectId,
             ref: 'users',
             required: false,
-        }
+        },
+        completado:{
+            type: [Schema.Types.ObjectId],
+            ref:'completado',
+        },
     },
     {
         timestamps: true,

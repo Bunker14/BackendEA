@@ -5,4 +5,5 @@ export interface Ticket {
     productos?: ObjectId[];
     location?: string; 
     anfitrion?: ObjectId;
+    completado: ObjectId[];
 }

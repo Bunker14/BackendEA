@@ -6,6 +6,8 @@ import GrupoModel from "../models/grupo";
 import UserModel from "../models/user";
 import { Ticket } from "../interfaces/ticket.interface";
 import TicketModel from "../models/ticket";
+import { Completado } from "../interfaces/completado.interface";
+import CompletadoModel from "../models/completado";
 
 const insertTicket = async(item: Ticket) => {
     const responseInsert = await TicketModel.create(item);
@@ -65,4 +67,37 @@ const getProductosTicket = async(id: string) => {
 
 
 
-export {getProductosTicket,insertTicket, getTickets, getTicket, deleteTicket, insertProductoToTicket, updateTicket, getTicketsPaginado};
+const putCompletadoToTicket = async (idTicket: string, data: Completado) => {
+
+    const ticketBBDD = await TicketModel.findOne({ _id: idTicket });
+    if (ticketBBDD != undefined) {
+        var i: number = 0;
+        var encontrado: boolean = false;
+        var completado;
+        while (i < ticketBBDD.completado.length && !encontrado) {
+            completado = await CompletadoModel.findOne({ _id: ticketBBDD.completado[i] });
+            if (completado != undefined) {
+                encontrado = true;
+            }
+            i++;
+        }
+        if (encontrado && completado?.usuario==data.usuario) {
+            const responseItem = await CompletadoModel.findOneAndUpdate({ _id: completado?.id }, data, { new: true });
+            return responseItem;
+        }
+        else {
+            const responseInsert = await CompletadoModel.create(data);
+            const responseItem = await TicketModel.findOneAndUpdate({ _id: idTicket },
+                { $addToSet: { completado: new Types.ObjectId(responseInsert._id) } },
+                { new: true }).populate('completado');
+            console.log(responseItem);
+            return responseItem;
+        }
+
+
+
+    }
+};
+
+
+export {getProductosTicket,insertTicket, getTickets, getTicket, deleteTicket, insertProductoToTicket, updateTicket, getTicketsPaginado, putCompletadoToTicket};
