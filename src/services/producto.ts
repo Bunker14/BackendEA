@@ -74,7 +74,7 @@ const putAsignacionToProducto = async (idProducto: string, data: Asignacion) => 
 const getProductobyParametros = async (name: string, quantity: string, totalprice: string) => {
     const responseItem = await ProductoModel.findOne({ name: name,
         quantity: parseInt(quantity),
-        totalprice: parseInt(totalprice) });
+        totalprice: parseFloat(totalprice) });
     return responseItem?.id;
 }
 
