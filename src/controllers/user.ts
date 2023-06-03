@@ -2,6 +2,8 @@ import { Request,Response } from "express";
 import { getTicketsOfUser,insertUser,getUsers,getUser,updateUser,deleteUser, getUsersPaginado, disableUser,getGruposOfUser} from "../services/user";
 import { handleHttp } from "../utils/error.handle";
 import {registerNewUser,loginUser}from "../services/auth";
+import {User} from "../interfaces/user.interface";
+
 
 const getPerson=async({params}:Request,res:Response)=>{
     try{
@@ -99,7 +101,8 @@ const ticketsOfUser=async({params}:Request,res:Response)=>{
 };
 const registerCtrl=async ({body}:Request,res:Response)=>{
     try{
-        const response=await registerNewUser(body);
+        var _user: User= body;
+        const response=await registerNewUser(_user);
         if(response==="INVALID_EMAIL"){
             res.status(210);
             res.send(response);
@@ -116,7 +119,7 @@ const registerCtrl=async ({body}:Request,res:Response)=>{
         }
 
     } catch(e){
-        handleHttp(res,"ERROR_REGISTER_USER");
+        handleHttp(res,"ERROR_REGISTER_USER"+e);
     }
 };
 const loginCtrl=async ({body}:Request,res:Response)=>{

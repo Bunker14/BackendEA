@@ -9,7 +9,7 @@ const router = Router(); //es el manejador de las rutas, las interpreta, con est
 /**
  * http://localhost:3002/items [GET]
  */
-router.get("/all", get_Grupos);
+router.get("/all", get_Grupos);             
 router.get("/:idGrupo", get_Grupo);
 router.get("/:idGrupo/code", get_GrupoCode);
 router.get("/code/all", get_AllGrupoCodigos);
