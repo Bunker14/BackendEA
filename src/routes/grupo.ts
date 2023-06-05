@@ -10,13 +10,13 @@ const router = Router(); //es el manejador de las rutas, las interpreta, con est
  * http://localhost:3002/items [GET]
  */
 router.get("/all", get_Grupos);             
-router.get("/:idGrupo", get_Grupo);
-router.get("/:idGrupo/code", get_GrupoCode);
+router.get("/get/:idGrupo", get_Grupo);
+router.get("/code/:idGrupo", get_GrupoCode);
 router.get("/code/all", get_AllGrupoCodigos);
-router.get("/:idGrupo/populate", get_GrupoPopulate);
-router.put("/:idGrupo", update_Grupo);
-router.post("/", create_Grupo);
-router.delete("/:idGrupo", delete_Grupo);
+router.get("/populate/:idGrupo", get_GrupoPopulate);
+router.put("/put/:idGrupo", update_Grupo);
+router.post("/post/", create_Grupo);
+router.delete("/delete/:idGrupo", delete_Grupo);
 router.post("/join", join_Grupo);
 router.post("/exit", exit_Grupo);
 router.put("/", insert_TicketGrupo);

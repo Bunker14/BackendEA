@@ -12,10 +12,10 @@ const router = Router(); //es el manejador de las rutas, las interpreta, con est
  */
 router.get("/all", get_Tickets);
 router.get("/allPaginado/:pagina1", get_TicketsPaginado);
-router.get("/:idTicket", get_Ticket);
-router.post("/", create_Ticket);
-router.delete("/:idTicket", delete_Ticket);
-router.put("/:idTicket", update_Ticket);
+router.get("/get/:idTicket", get_Ticket);
+router.post("/post/", create_Ticket);
+router.delete("/delete/:idTicket", delete_Ticket);
+router.put("/put/:idTicket", update_Ticket);
 router.post("/insert", insert_ProductoToTicket)
 router.get("/:idTicket/productos", get_productos_ticket)
 //router.put("/t/completado", putCompletadoTo_Ticket);
