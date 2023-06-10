@@ -53,7 +53,7 @@ const putAsignacionToProducto = async (idProducto: string, data: Asignacion) => 
             const responseItem = await AsignacionModel.findOneAndUpdate({ _id: asignacion?.id }, data, { new: true });
             return responseItem;
         }
-        else {
+        if(!encontrado) {
             const responseInsert = await AsignacionModel.create(data);
             const responseItem = await ProductoModel.findOneAndUpdate({ _id: idProducto },
                 { $addToSet: { asignaciones: new Types.ObjectId(responseInsert._id) } },
