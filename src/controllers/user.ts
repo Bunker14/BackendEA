@@ -1,7 +1,7 @@
 import { Request,Response } from "express";
 import { getTicketsOfUser,insertUser,getUsers,getUser,updateUser,deleteUser, getUsersPaginado, disableUser,getGruposOfUser} from "../services/user";
 import { handleHttp } from "../utils/error.handle";
-import {registerNewUser,loginUser}from "../services/auth";
+import {registerNewUser,loginUser, registerNewUserGoogle}from "../services/auth";
 import {User} from "../interfaces/user.interface";
 
 
@@ -122,6 +122,25 @@ const registerCtrl=async ({body}:Request,res:Response)=>{
         handleHttp(res,"ERROR_REGISTER_USER"+e);
     }
 };
+const registerCtrlGoogle=async ({body}:Request,res:Response)=>{
+    try{
+        var _user: User= body;
+        const response=await registerNewUserGoogle(_user);
+        if(response==="INVALID_EMAIL"){
+            res.status(210);
+            res.send(response);
+        } else if(response==="BLANK_PASSWORD"){
+            res.status(211);
+            res.send(response);
+        }
+        else{
+            res.send(response);
+        }
+
+    } catch(e){
+        handleHttp(res,"ERROR_REGISTER_USER"+e);
+    }
+};
 const loginCtrl=async ({body}:Request,res:Response)=>{
     try{
         const {email,password}=body;
@@ -142,4 +161,4 @@ const loginCtrl=async ({body}:Request,res:Response)=>{
     }
 };
 
-export{loginCtrl,registerCtrl,getPerson,getPeople,postPerson,updatePerson,deletePerson,getPeoplePaginado, disablePerson,gruposOfUser,ticketsOfUser};
+export{loginCtrl,registerCtrl,getPerson,getPeople,postPerson,updatePerson,deletePerson,getPeoplePaginado, disablePerson,gruposOfUser,ticketsOfUser, registerCtrlGoogle};
