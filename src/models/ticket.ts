@@ -27,6 +27,11 @@ const TicketSchema = new Schema<Ticket>(
             type: [Schema.Types.ObjectId],
             ref:'completado',
         },
+        isEnabled:{
+            type: Boolean,
+
+        } ,
+
     },
     {
         timestamps: true,

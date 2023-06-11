@@ -5,6 +5,8 @@ import { insertProducto, getProdcutos, getProducto, updateProducto, deleteProduc
 import { getProductosTicket, deleteTicket, getTicket, getTickets, getTicketsPaginado, insertProductoToTicket, insertTicket, updateTicket } from "../services/ticket";
 import { Asignacion } from "../interfaces/asignacion.interface";
 import AsignacionModel from "../models/asignacion";
+import { createAsignacion } from "../services/asignacion";
+import { Types } from "mongoose";
 
 const get_Producto = async ({ params }: Request, res: Response) => {
     try {
@@ -94,9 +96,22 @@ const getProductoby_Parametros = async ({ body }: Request, res: Response) => {
 const crearyadd_producto = async ({ params, body }: Request, res: Response) => {
     console.log(body);
     try {
+        var mongoose = require('mongoose');
+        
         const { idTicket } = params;
         const { name, quantity, totalprice } = body;
-        const responseProducto = await insertProducto(body);
+        const asignacion=await createAsignacion({
+            "usuario":new mongoose.Types.ObjectId("646533af5d70e1cdb9ddfcbf"),
+            "cantidad":0
+        });
+
+        var bodyTicket={
+            "name":name,
+            "quantity":quantity,
+            "totalprice":totalprice,
+            "asignaciones":asignacion.id
+        };
+        const responseProducto = await insertProducto(bodyTicket);
         console.log(responseProducto);
         if(responseProducto){
 

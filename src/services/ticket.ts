@@ -72,7 +72,7 @@ const putCompletadoToTicket = async (idTicket: string, data: Completado) => {
         var encontrado: boolean = false;
         var completado;
         while (i < ticketBBDD.completado.length && !encontrado) {
-            completado = await CompletadoModel.findOne({usuario:  ticketBBDD.completado[i] });
+            completado = await CompletadoModel.findOne({_id:  ticketBBDD.completado[i] });
             if (completado != undefined) {
                 encontrado = true;
             }

@@ -79,7 +79,6 @@ const join_Grupo = async ({ body }: Request, res: Response) => {
     try {
         const { idUser, codigo } = body;
         const responseGrupo = await joinGrupo(idUser, codigo);
-        console.log(responseGrupo);
         if (!responseGrupo) {
             // res.statusCode=3;
             // res.send(res);

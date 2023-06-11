@@ -45,6 +45,7 @@ const create_Ticket = async ({ body }: Request, res: Response) => {
     try {
         var ticket = {
             "nombre": body.nombre,
+            "isEnabled":true,
             "location": body.location,
             "anfitrion": body.userId,
             "completado": body.completado

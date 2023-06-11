@@ -6,4 +6,5 @@ export interface Ticket {
     location?: string; 
     anfitrion?: ObjectId;
     completado: ObjectId[];
+    isEnabled?: boolean;
 }
