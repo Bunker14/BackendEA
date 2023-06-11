@@ -58,9 +58,8 @@ const delete_Producto = async ({ params }: Request, res: Response) => {
 
 const putAsignacionToProducto_Producto = async (body: Request, res: Response) => {
     try {
-        console.log(body.body)
+        
         var idUsuario = body.body.idUsuario;
-        console.log(idUsuario)
         var response;
         for (var i = 0; i < body.body.productos.length; i++) {
             var asignacion = {

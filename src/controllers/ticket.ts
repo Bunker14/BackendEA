@@ -112,9 +112,7 @@ const get_productos_ticket = async ({ params }: Request, res: Response) => {
 
 const putCompletadoTo_Ticket = async (body: Request, res: Response) => {
     try {
-        console.log(body.body)
         var idUsuario = body.body.idUsuario;
-        console.log(idUsuario)
         var response;
         for (var i = 0; i < body.body.completados.length; i++) {
             var completado: Completado = {
