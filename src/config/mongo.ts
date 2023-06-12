@@ -7,7 +7,14 @@ async function dbConnect(): Promise<void>{
                                              //Esta variable hace referencia a lo que es el string para conectarnos al Mongo.
                                              //Tenemos que ir al archivo .env y crear la misma variable
     console.log("DB_URI: ", DB_URI);
-    await connect(DB_URI);
+    const options = {
+        autoIndex: false, // Don't build indexes
+        maxPoolSize: 10, // Maintain up to 10 socket connections
+        serverSelectionTimeoutMS: 155000, // Keep trying to send operations for 5 seconds
+        socketTimeoutMS: 145000, // Close sockets after 45 seconds of inactivity
+        family: 4 // Use IPv4, skip trying IPv6
+      };
+          await connect(DB_URI, options);
 }
 
 //Connection exported ready to be used
