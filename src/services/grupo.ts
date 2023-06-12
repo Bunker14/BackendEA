@@ -150,8 +150,6 @@ const insertTicketGrupo = async (idGrupo: string, idTicket: string) => {
 }
 const crearCompletadosInsertTicketGrupo = async (grupo: Grupo, idTicket: string) => {
     if (grupo.users != null || grupo.users != undefined) {
-
-
         grupo.users.forEach(user => {
             putCompletadoToTicket(idTicket, {
                 "usuario": user,
