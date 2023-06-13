@@ -14,7 +14,7 @@ router.get("/get/:idProducto", get_Producto);
 router.post("/busqueda", getProductoby_Parametros);
 router.put("/put/:idTicket/addProdcutoTicket", crearyadd_producto);
 router.put("/update/:idProducto", update_Prodcuto);
-router.post("/post/", create_Producto);
+router.post("/post", create_Producto);
 router.delete("/delete/:idProducto", delete_Producto);
 router.put("/p/asignaciones", putAsignacionToProducto_Producto);
 

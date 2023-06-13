@@ -19,7 +19,7 @@ app.use(express.json());
 app.use(router);
 db().then(() => console.log("Connection is ready"));
 app.listen(PORT, () => console.log(`Hey! Listening por el puerto ${PORT}`));
-
+/*
 const port = config.get<number>("port");
 const host = config.get<string>("host");
 const corsOrigin = "*"
@@ -43,3 +43,4 @@ httpServer.listen(port, host, () => {
 
   socket({ io });
 });
+*/
