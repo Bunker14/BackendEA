@@ -3,6 +3,7 @@ export interface User {
     surname: string;
     email: string;
     password: string;
-    role: "Admin"| "User"; 
+    role: "Admin"| "User";
+    image?: string;
     isEnabled?: boolean;
 }
