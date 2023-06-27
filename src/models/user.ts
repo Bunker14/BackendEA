@@ -24,6 +24,10 @@ const UserSchema = new Schema<User>(
             enum: ["Admin", "User"],
             required:true,
         },
+        image:{
+            type: String,
+            required: false,
+        },
         isEnabled:{
             type: Boolean,
         }, 
