@@ -4,6 +4,7 @@ import UserModel from "../models/user";
 import GrupoModel from "../models/grupo";
 import TicketModel from "../models/ticket";
 import { Types } from "mongoose";
+import { encrypt } from "../utils/bcrypt.handle";
 
 
 const insertUser = async(item: User) => {
@@ -34,6 +35,7 @@ const getUser = async(id: string) => {
 };
 
 const updateUser = async(id: string, data: User) => {
+    data.password = await encrypt(data.password);
     const responseItem = await UserModel.findOneAndUpdate({_id: id}, data,{new: true});
     return responseItem;
 };
