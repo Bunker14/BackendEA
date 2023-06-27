@@ -161,4 +161,5 @@ const loginCtrl=async ({body}:Request,res:Response)=>{
     }
 };
 
+
 export{loginCtrl,registerCtrl,getPerson,getPeople,postPerson,updatePerson,deletePerson,getPeoplePaginado, disablePerson,gruposOfUser,ticketsOfUser, registerCtrlGoogle};
