@@ -6,5 +6,4 @@ export interface User {
     role: "Admin"| "User";
     image?: string;
     isEnabled?: boolean;
-    image?: string;
 }
