@@ -15,6 +15,7 @@ router.post("/", postPerson);
 router.put("/:idUser", updatePerson);
 router.put("/disable/:idUser", disablePerson);
 
+
 router.delete("/:idUser", deletePerson);
 router.get("/grupos/:idUser", gruposOfUser);
 

@@ -5,4 +5,5 @@ export interface User {
     password: string;
     role: "Admin"| "User"; 
     isEnabled?: boolean;
+    image?: string;
 }

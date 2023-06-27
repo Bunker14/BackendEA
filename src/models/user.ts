@@ -26,7 +26,9 @@ const UserSchema = new Schema<User>(
         },
         isEnabled:{
             type: Boolean,
-
+        }, 
+        image:{
+            type: String,
         } 
     },
     {
