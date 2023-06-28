@@ -22,7 +22,7 @@ app.listen(PORT, () =>{
   console.log(`Hey! Listening por el puerto ${PORT}`);
   
 });
-
+/*
 
 const port = config.get<number>("port");
 const host = config.get<string>("host");
@@ -41,9 +41,8 @@ app.get("/", (_, res) =>
   res.send(`Server is up and running version ${version}`)
 );
 
-httpServer.listen(port, host, () => {
+httpServer.listen(port, () => {
   logger.info(`🚀 Server version ${version} is listening 🚀`);
-  logger.info(`http://${host}:${port}`);
-
   socket({ io });
 });
+*/
